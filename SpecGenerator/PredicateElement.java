@@ -15,6 +15,7 @@ public class PredicateElement {
     // Constructor
     public PredicateElement() {
         this.value = "";
+        this.parent = null;
         this.leftchild = null;
         this.rightchild = null;
     }

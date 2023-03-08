@@ -15,15 +15,12 @@ public class Predicate {
     // attribute
     private PredicateElement predicateRoot;
     private ArrayList<Variable> variables;
+    private ArrayList<PredicateElement> leavesParent;
 
     // Constructor
     public Predicate(String[] predicateInput) {
         this.predicateRoot = makeParseTree(predicateInput);
-    }
-
-    // Constructor using variable
-    public Predicate(PredicateElement predicateRoot) {
-        this.predicateRoot = predicateRoot;
+        this.leavesParent = new ArrayList<PredicateElement>();
     }
 
     // original method
@@ -197,16 +194,6 @@ public class Predicate {
         return root;
     }
 
-    public void traverse(PredicateElement root) {
-        if(root != null) {
-            if((root.getValue().equals("and")) && (!(root.getLeftchild().getValue().equals("and")) && !(root.getRightchild().getValue().equals("and")))) {
-                System.out.println(printPrefix(root));
-            }
-            traverse(root.getLeftchild());
-            traverse(root.getRightchild());
-        }
-    }
-
     /**
      * @date 2023-02-26(Sun)
      * @author SoheeJung
@@ -256,6 +243,28 @@ public class Predicate {
         return prefixString;
     } 
 
+    /**
+     * @date 2023-03-08(Wed)
+     * @Author SoheeJung
+     * @name findAllLeaves : find and save all leaf nodes
+     * @param root : tree root node
+     */
+    public void findAllLeavesParent(PredicateElement root) {
+        if(root == null) return;
+
+        // if node is leaf node, then save arraylist
+        if((root.getLeftchild() == null) && (root.getRightchild() == null)) {
+            leavesParent.add(root.getParent());
+            return;
+        }
+        
+        // left child check recursively
+        if(root.getLeftchild() != null) findAllLeavesParent(root.getLeftchild());
+
+        // right child check recursively
+        if(root.getRightchild() != null) findAllLeavesParent(root.getRightchild());
+    }
+
     // Getter & Setter
     public PredicateElement getPredicateRoot() {
         return predicateRoot;
@@ -271,5 +280,14 @@ public class Predicate {
 
     public void setVariables(ArrayList<Variable> variables) {
         this.variables = variables;
+    }
+
+    public ArrayList<PredicateElement> getLeavesParent() {
+        findAllLeavesParent(predicateRoot);
+        return leavesParent;
+    }
+
+    public void setLeavesParent(ArrayList<PredicateElement> leavesParent) {
+        this.leavesParent = leavesParent;
     }
 }

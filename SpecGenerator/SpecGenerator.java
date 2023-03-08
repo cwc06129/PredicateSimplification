@@ -51,12 +51,13 @@ public class SpecGenerator {
      * @date 2023-02-28(Tue)
      * @author SoheeJung
      * @name makeSpecFile : generate spec file (.sl file)
+     * @param filepath : output spec file path
      * @param prefixString : prefix precessed string
      * @param variables : variables that define in prefixString
      * @throws IOException
      */
-    public void makeSpecFile(String prefixString, ArrayList<Variable> variables) throws IOException {
-        File file = new File("./output.sl");
+    public void makeSpecFile(String filepath, String prefixString, ArrayList<Variable> variables) throws IOException {
+        File file = new File(filepath);
         FileWriter fileWriter = new FileWriter(file);
         PrintWriter printWriter = new PrintWriter(fileWriter);
         
@@ -64,11 +65,19 @@ public class SpecGenerator {
         printWriter.print("(set-logic LIA)\n\n");
         printWriter.print("(synth-fun simplify ( ");
         
-        // temporary varaible select
-        char ch = 'a';
-        for(int i=1; i<=variables.size(); i++) {
-            printWriter.print("(" + ch + " Int) ");
-            ch += 1;
+        // 2023-03-08(Wed) SoheeJung
+        // Deletion this part : Using real variable
+        // // temporary varaible select
+        // char ch = 'a';
+        // for(int i=1; i<=variables.size(); i++) {
+        //     printWriter.print("(" + ch + " Int) ");
+        //     ch += 1;
+        // }
+
+        // 2023-03-08(Wed) SoheeJung
+        // real variable get
+        for(Variable var : variables) {
+            printWriter.print("(" + var.getName() + " Int) ");
         }
 
         printWriter.print(") Bool\n");
@@ -92,11 +101,20 @@ public class SpecGenerator {
         // StartInt part
         printWriter.print("\t(StartInt Int (\n");
 
-        ch = 'a';
-        for(int i=1; i<=variables.size(); i++) {
-            printWriter.print("\t\t" + ch + "\n");
-            ch += 1;
+        // 2023-03-08(Wed) SoheeJung
+        // Deletion this part : Using real variable
+        // ch = 'a';
+        // for(int i=1; i<=variables.size(); i++) {
+        //     printWriter.print("\t\t" + ch + "\n");
+        //     ch += 1;
+        // }
+
+        // 2023-03-08(Wed) SoheeJung
+        // real variable get
+        for(Variable var : variables) {
+            printWriter.print("\t\t" + var.getName() + "\n");
         }
+
         for(int i=-1; i<=9; i++) {
             printWriter.print("\t\t" + String.valueOf(i) + "\n");
         }
@@ -137,9 +155,10 @@ public class SpecGenerator {
      * @param filepath : .sl file path
      * @throws IOException
      */
-    public void eusolverConnector(String filepath) throws IOException {
+    public String eusolverConnector(String filepath) throws IOException {
         Process process = null;
         String str = null;
+        String result = null;
 
         try {
             System.out.println("**********    Eusolver Start    **********");
@@ -148,32 +167,60 @@ public class SpecGenerator {
 
             while((str = stdOut.readLine()) != null) {
                 System.out.println(str);
+                if(!str.contains("simplify")) {
+                    result = str.trim();
+                    // Last parenthesis elimination
+                    result = result.substring(0, result.length() - 1);
+                }
             }
             System.out.println("**********    Eusolver Finish    **********\n");
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        return result;
     }
 
     // main
     public static void main(String[] args) throws IOException {
         // Get Input String
-        String input = "((!(rt_input.number > 7) and (rt_input.number > 1) and !(4 == rt_input.number) and (rt_input.number >= 6) and !(7 > rt_input.number)) or (!(rt_input.number > 7) and (rt_input.number > 1) and !(4 == rt_input.number) and !(rt_input.number >= 6)))";
+        String input = "(((2 >= rt_input.n1) and !(1 == (4 - rt_input.n2)) and (4 >= rt_input.n2)) or ((2 >= rt_input.n1) and !(1 == (4 - rt_input.n2)) and !(4 >= rt_input.n2) and (rt_input.n2 >= 8)) or ((2 >= rt_input.n1) and !(1 == (4 - rt_input.n2)) and !(4 >= rt_input.n2) and !(rt_input.n2 >= 8) and (6 == rt_input.n2)) or (!(2 >= rt_input.n1) and (6 == rt_input.n1) and !(rt_input.n1 == rt_input.n2) and !(1 == (4 - rt_input.n2)) and (9 > rt_input.n2)) or (!(2 >= rt_input.n1) and !(6 == rt_input.n1) and (6 == rt_input.n2) and !(4 > rt_input.n1) and !(9 == rt_input.n1)) or (!(2 >= rt_input.n1) and !(6 == rt_input.n1) and !(6 == rt_input.n2) and (2 >= rt_input.n2) and (1 == (9 - rt_input.n1))) or (!(2 >= rt_input.n1) and !(6 == rt_input.n1) and !(6 == rt_input.n2) and (2 >= rt_input.n2) and !(1 == (9 - rt_input.n1)) and (4 == rt_input.n1)))";
 
         // Make instance OR object
         SpecGenerator spec = new SpecGenerator(input);
         Predicate pred = spec.getPredicate();
         PredicateElement predElement = pred.getPredicateRoot();
 
-        /************* traverse해서 최하단부터 simplify하는 과정을 구현하면 됨. 2023-03-08(수) **************/
-        // pred.traverse(predElement);
+        /**
+         * 2023-03-08(Wed) SoheeJung
+         * <Algorithm>
+         * 1. Make a prefix from the lowest predicate element
+         * 2. Generate spec file(.sl file) using prefix
+         * 3. Regenerate tree based on eusolver result
+         *      3-1. eusolver result does not necessarily require each element to be make of each tree element.
+         */
+        while(true) {
+            ArrayList<PredicateElement> leavesParent = pred.getLeavesParent();
+            if(leavesParent.contains(predElement)) break;
+            
+            for(PredicateElement leafParent : leavesParent) {
+                System.out.println("prefix : " + pred.printPrefix(leafParent));
 
-        // make spec file (.sl file)
-        spec.makeSpecFile(pred.printPrefix(predElement), pred.getVariables());
-        System.out.println("prefix : " + pred.printPrefix(predElement));
-        
-        // eusolver execution
-        // spec.eusolverConnector(input);
+                // make spec file (.sl file)
+                spec.makeSpecFile("./output.sl", pred.printPrefix(leafParent), pred.getVariables());
+
+                // eusolver execution
+                String eusolver_result = spec.eusolverConnector("./output.sl");
+                
+                // convert leafParent value from original to generated eusolver result.
+                // and make leafParent to leaf node.
+                leafParent.setValue(eusolver_result);
+                leafParent.setLeftchild(null);
+                leafParent.setRightchild(null);
+            }
+        }
+
+        System.out.println("final result : " + pred.printPrefix(predElement));
     }
 
     // Getter & Setter
