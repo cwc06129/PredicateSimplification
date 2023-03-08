@@ -246,7 +246,7 @@ public class Predicate {
     /**
      * @date 2023-03-08(Wed)
      * @Author SoheeJung
-     * @name findAllLeaves : find and save all leaf nodes
+     * @name findAllLeaves : find and save all leaf nodes's parent node
      * @param root : tree root node
      */
     public void findAllLeavesParent(PredicateElement root) {
