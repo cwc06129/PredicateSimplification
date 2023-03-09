@@ -11,6 +11,9 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 public class SpecGenerator {
     // attribute
@@ -154,8 +157,9 @@ public class SpecGenerator {
      * @name eusolverConnector : execute eusolver using command line
      * @param filepath : .sl file path
      * @throws IOException
+     * @throws InterruptedException
      */
-    public String eusolverConnector(String filepath) throws IOException {
+    public String eusolverConnector(String filepath) throws IOException, InterruptedException {
         Process process = null;
         String str = null;
         String result = null;
@@ -164,6 +168,12 @@ public class SpecGenerator {
             System.out.println("**********    Eusolver Start    **********");
             process = Runtime.getRuntime().exec("eusolver/eusolver" + " " + filepath);
             BufferedReader stdOut = new BufferedReader(new InputStreamReader(process.getInputStream()));
+
+            if (!process.waitFor(30, TimeUnit.SECONDS)) {
+                process.destroy();
+                System.out.println("eusolver Timeout Occurred!!!!\n");
+                return null;
+            }
 
             while((str = stdOut.readLine()) != null) {
                 System.out.println(str);
@@ -182,7 +192,7 @@ public class SpecGenerator {
     }
 
     // main
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, InterruptedException {
         // Get Input String
         String input = "(((2 >= rt_input.n1) and !(1 == (4 - rt_input.n2)) and (4 >= rt_input.n2)) or ((2 >= rt_input.n1) and !(1 == (4 - rt_input.n2)) and !(4 >= rt_input.n2) and (rt_input.n2 >= 8)) or ((2 >= rt_input.n1) and !(1 == (4 - rt_input.n2)) and !(4 >= rt_input.n2) and !(rt_input.n2 >= 8) and (6 == rt_input.n2)) or (!(2 >= rt_input.n1) and (6 == rt_input.n1) and !(rt_input.n1 == rt_input.n2) and !(1 == (4 - rt_input.n2)) and (9 > rt_input.n2)) or (!(2 >= rt_input.n1) and !(6 == rt_input.n1) and (6 == rt_input.n2) and !(4 > rt_input.n1) and !(9 == rt_input.n1)) or (!(2 >= rt_input.n1) and !(6 == rt_input.n1) and !(6 == rt_input.n2) and (2 >= rt_input.n2) and (1 == (9 - rt_input.n1))) or (!(2 >= rt_input.n1) and !(6 == rt_input.n1) and !(6 == rt_input.n2) and (2 >= rt_input.n2) and !(1 == (9 - rt_input.n1)) and (4 == rt_input.n1)))";
 
@@ -199,25 +209,44 @@ public class SpecGenerator {
          * 3. Regenerate tree based on eusolver result
          *      3-1. eusolver result does not necessarily require each element to be make of each tree element.
          */
+        int mergePredicateCount = 1;
+
         while(true) {
-            ArrayList<PredicateElement> leavesParent = pred.getLeavesParent();
+            System.out.println("##########      " + String.valueOf(mergePredicateCount) + " merge start     ###########");
+
+            // 2023-03-09(Thu) SoheeJung
+            // Initialize leavesParent set then get new leavesParent set.
+            pred.setLeavesParent(new HashSet<PredicateElement>());
+            Set<PredicateElement> leavesParent = pred.getLeavesParent();
             if(leavesParent.contains(predElement)) break;
-            
+
             for(PredicateElement leafParent : leavesParent) {
-                System.out.println("prefix : " + pred.printPrefix(leafParent));
+                // leafParent is "-" OR "+", then make this prefix form leaf node.
+                // leafParent is "or", then just merge all node. (using prefix form)
+                if(leafParent.getValue().equals("-") || leafParent.getValue().equals("+") || leafParent.getValue().equals("or")) {
+                    leafParent.setValue(pred.printPrefix(leafParent));
+                    leafParent.setLeftchild(null);
+                    leafParent.setRightchild(null);
+                }
+                else {
+                    // make spec file (.sl file)
+                    spec.makeSpecFile("./output.sl", pred.printPrefix(leafParent), pred.getVariables());
 
-                // make spec file (.sl file)
-                spec.makeSpecFile("./output.sl", pred.printPrefix(leafParent), pred.getVariables());
-
-                // eusolver execution
-                String eusolver_result = spec.eusolverConnector("./output.sl");
-                
-                // convert leafParent value from original to generated eusolver result.
-                // and make leafParent to leaf node.
-                leafParent.setValue(eusolver_result);
-                leafParent.setLeftchild(null);
-                leafParent.setRightchild(null);
+                    // eusolver execution
+                    String eusolver_result = spec.eusolverConnector("./output.sl");
+                    
+                    // convert leafParent value from original to generated eusolver result.
+                    // and make leafParent to leaf node.
+                    if(eusolver_result != null) {
+                        leafParent.setValue(eusolver_result);
+                        leafParent.setLeftchild(null);
+                        leafParent.setRightchild(null);
+                    }
+                }
             }
+
+            System.out.println("##########      " + String.valueOf(mergePredicateCount) + " merge finish     ###########\n");
+            mergePredicateCount++;
         }
 
         System.out.println("final result : " + pred.printPrefix(predElement));

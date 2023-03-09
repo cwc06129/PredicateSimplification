@@ -37,7 +37,7 @@
 (declare-var rt_input.n1 Int)
 
 (constraint (= (simplify rt_input.n2 rt_input.n1 )
-	( and (= 6 rt_input.n1) ( and ( not (= rt_input.n1 rt_input.n2) ) ( and ( not (= 3 rt_input.n2) ) (> 9 rt_input.n2) ) ) ) 
+	( and (not (= 6 rt_input.n1)) (and (> 3 rt_input.n2) (= 4 rt_input.n1)) ) 
 	))
 
 (check-synth)

@@ -15,12 +15,12 @@ public class Predicate {
     // attribute
     private PredicateElement predicateRoot;
     private ArrayList<Variable> variables;
-    private ArrayList<PredicateElement> leavesParent;
+    private Set<PredicateElement> leavesParent;
 
     // Constructor
     public Predicate(String[] predicateInput) {
         this.predicateRoot = makeParseTree(predicateInput);
-        this.leavesParent = new ArrayList<PredicateElement>();
+        this.leavesParent = new HashSet<PredicateElement>();
     }
 
     // original method
@@ -282,12 +282,12 @@ public class Predicate {
         this.variables = variables;
     }
 
-    public ArrayList<PredicateElement> getLeavesParent() {
+    public Set<PredicateElement> getLeavesParent() {
         findAllLeavesParent(predicateRoot);
         return leavesParent;
     }
 
-    public void setLeavesParent(ArrayList<PredicateElement> leavesParent) {
+    public void setLeavesParent(Set<PredicateElement> leavesParent) {
         this.leavesParent = leavesParent;
     }
 }
