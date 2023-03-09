@@ -191,10 +191,43 @@ public class SpecGenerator {
         return result;
     }
 
+    /**
+     * @date 2023-03-09(Thu)
+     * @Author SoheeJung
+     * @name getElapsedTime
+     * @param start : process start time
+     * @param end : process end time
+     */
+    public static void getElapsedTime(long start, long end) {
+        long secondsInMilli = 1000;
+		long minutesInMilli = secondsInMilli * 60;
+		long hoursInMilli = minutesInMilli * 60;
+		long daysInMilli = hoursInMilli * 24;
+
+        long different = end - start;
+
+		long elapsedDays = different / daysInMilli;
+		different = different % daysInMilli;
+		
+		long elapsedHours = different / hoursInMilli;
+		different = different % hoursInMilli;
+		
+		long elapsedMinutes = different / minutesInMilli;
+		different = different % minutesInMilli;
+		
+		long elapsedSeconds = different / secondsInMilli;
+		
+		System.out.printf("\nTotal Conversion Time : %d days, %d hours, %d minutes, %d seconds%n", elapsedDays, elapsedHours, elapsedMinutes, elapsedSeconds);
+    }
+
     // main
     public static void main(String[] args) throws IOException, InterruptedException {
+        // 2023-03-09(Thu) SoheeJung
+        // Time Checking (start time)
+        long startTime = System.currentTimeMillis();
+
         // Get Input String
-        String input = "(((2 >= rt_input.n1) and !(1 == (4 - rt_input.n2)) and (4 >= rt_input.n2)) or ((2 >= rt_input.n1) and !(1 == (4 - rt_input.n2)) and !(4 >= rt_input.n2) and (rt_input.n2 >= 8)) or ((2 >= rt_input.n1) and !(1 == (4 - rt_input.n2)) and !(4 >= rt_input.n2) and !(rt_input.n2 >= 8) and (6 == rt_input.n2)) or (!(2 >= rt_input.n1) and (6 == rt_input.n1) and !(rt_input.n1 == rt_input.n2) and !(1 == (4 - rt_input.n2)) and (9 > rt_input.n2)) or (!(2 >= rt_input.n1) and !(6 == rt_input.n1) and (6 == rt_input.n2) and !(4 > rt_input.n1) and !(9 == rt_input.n1)) or (!(2 >= rt_input.n1) and !(6 == rt_input.n1) and !(6 == rt_input.n2) and (2 >= rt_input.n2) and (1 == (9 - rt_input.n1))) or (!(2 >= rt_input.n1) and !(6 == rt_input.n1) and !(6 == rt_input.n2) and (2 >= rt_input.n2) and !(1 == (9 - rt_input.n1)) and (4 == rt_input.n1)))";
+        String input = "((!(rt_input.number > 7) and (rt_input.number > 1) and !(4 == rt_input.number) and (rt_input.number >= 6) and !(7 > rt_input.number)) or (!(rt_input.number > 7) and (rt_input.number > 1) and !(4 == rt_input.number) and !(rt_input.number >= 6)))";
 
         // Make instance OR object
         SpecGenerator spec = new SpecGenerator(input);
@@ -250,6 +283,10 @@ public class SpecGenerator {
         }
 
         System.out.println("final result : " + pred.printPrefix(predElement));
+
+        long endTime = System.currentTimeMillis();
+
+        getElapsedTime(startTime, endTime);
     }
 
     // Getter & Setter
