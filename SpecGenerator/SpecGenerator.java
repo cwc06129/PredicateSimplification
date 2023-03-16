@@ -146,7 +146,7 @@ public class SpecGenerator {
         printWriter.print("\t" + prefixString + "\n");
 
         printWriter.print("\t))\n\n");
-        printWriter.print("(check-synth)");
+        printWriter.print("(check-synth)"); 
 
         printWriter.close();
     }
@@ -188,9 +188,14 @@ public class SpecGenerator {
                 System.out.println("**********    Eusolver Finish    **********\n");
             }
             else {
+                // 2023-03-16(Thu) SoheeJung
+                // kill zombie eusolver process
+                String killComment = ("killall python3.6");
+                Process p = Runtime.getRuntime().exec(killComment.split(" "));
+                p.waitFor();
                 System.out.println("Timeout occurred !!\n");
             }
-            // ******** 좀비프로세스가 계속 살아있음!!!! 해결필요...ㅠㅠ ************
+            
             process.destroy();
             process.destroyForcibly();
         } catch (IOException e) {
@@ -238,7 +243,7 @@ public class SpecGenerator {
         long startTime = System.currentTimeMillis();
 
         // Get Input String
-        String input = "((!(rt_input.number > 7) and (rt_input.number > 1) and !(4 == rt_input.number) and (rt_input.number >= 6) and !(7 > rt_input.number)) or (!(rt_input.number > 7) and (rt_input.number > 1) and !(4 == rt_input.number) and !(rt_input.number >= 6)))";
+        String input = "((!(1 >= rt_state.zone_0) and !(2 >= rt_input.obsDistance_3) and !(2 >= rt_input.obsDistance_2) and (14 > rt_input.obsDistance_1) and !(rt_state.speed_status == Fast_speed) and (2 == rt_state.zone_1) and (19 > rt_input.obsDistance_2) and !(2 >= rt_input.obsDistance_1) and !(14 > rt_input.obsDistance_3)) or (!(1 >= rt_state.zone_0) and !(2 >= rt_input.obsDistance_3) and !(2 >= rt_input.obsDistance_2) and (14 > rt_input.obsDistance_1) and !(rt_state.speed_status == Fast_speed) and (2 == rt_state.zone_1) and !(19 > rt_input.obsDistance_2)) or (!(1 >= rt_state.zone_0) and !(2 >= rt_input.obsDistance_3) and !(2 >= rt_input.obsDistance_2) and !(14 > rt_input.obsDistance_1)))";
 
         // Make instance OR object
         SpecGenerator spec = new SpecGenerator(input);
