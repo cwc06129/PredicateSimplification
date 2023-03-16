@@ -167,27 +167,38 @@ public class SpecGenerator {
         try {
             System.out.println("**********    Eusolver Start    **********");
             process = Runtime.getRuntime().exec("eusolver/eusolver" + " " + filepath);
-            BufferedReader stdOut = new BufferedReader(new InputStreamReader(process.getInputStream()));
 
-            if (!process.waitFor(30, TimeUnit.SECONDS)) {
-                process.destroy();
-                System.out.println("eusolver Timeout Occurred!!!!\n");
-                return null;
-            }
-
-            while((str = stdOut.readLine()) != null) {
-                System.out.println(str);
-                if(!str.contains("simplify")) {
-                    result = str.trim();
-                    // Last parenthesis elimination
-                    result = result.substring(0, result.length() - 1);
+            // if (!process.waitFor(30, TimeUnit.SECONDS)) {
+            //     process.destroy();
+            //     process.destroyForcibly();
+            //     System.out.println("Timeout occurred!!");
+            //     return null;
+            // }
+            
+            if(process.waitFor(30, TimeUnit.SECONDS)) {
+                BufferedReader stdOut = new BufferedReader(new InputStreamReader(process.getInputStream()));
+                while((str = stdOut.readLine()) != null) {
+                    System.out.println(str);
+                    if(!str.contains("simplify")) {
+                        result = str.trim();
+                        // Last parenthesis elimination
+                        result = result.substring(0, result.length() - 1);
+                    }
                 }
+                System.out.println("**********    Eusolver Finish    **********\n");
             }
-            System.out.println("**********    Eusolver Finish    **********\n");
+            else {
+                System.out.println("Timeout occurred !!\n");
+            }
+            // ******** 좀비프로세스가 계속 살아있음!!!! 해결필요...ㅠㅠ ************
+            process.destroy();
+            process.destroyForcibly();
         } catch (IOException e) {
             e.printStackTrace();
         }
-
+        
+        process.destroy();
+        process.destroyForcibly();
         return result;
     }
 
