@@ -254,6 +254,8 @@ public class Predicate {
 
         // if node is leaf node, then save arraylist
         if((root.getLeftchild() == null) && (root.getRightchild() == null)) {
+            // 2023-03-17(Fri) SoheeJung
+            // Another error : if both child is leaf nodes, then add leaves Parent. if not, don't do that. but current code add all the leaf nodes to leavesParent.
             leavesParent.add(root.getParent());
             return;
         }
