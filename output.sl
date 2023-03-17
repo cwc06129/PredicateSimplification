@@ -47,7 +47,7 @@
 (declare-var rt_input.obsDistance_1 Int)
 
 (constraint (= (simplify rt_input.obsDistance_3 rt_state.zone_1 Fast_speed rt_state.speed_status rt_state.zone_0 rt_input.obsDistance_2 rt_input.obsDistance_1 )
-	( and (not (= rt_state.speed_status Fast_speed)) ( and (= 2 rt_state.zone_1) ( and (>= (+ 9 9) rt_input.obsDistance_2) ( and (> rt_input.obsDistance_1 2) (> (- rt_input.obsDistance_3 9) 4) ) ) ) ) 
+	( and (> rt_input.obsDistance_2 2) (> (- rt_input.obsDistance_1 9) 4) ) 
 	))
 
 (check-synth)

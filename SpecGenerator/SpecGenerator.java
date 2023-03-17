@@ -175,7 +175,7 @@ public class SpecGenerator {
             //     return null;
             // }
             
-            if(process.waitFor(30, TimeUnit.SECONDS)) {
+            if(process.waitFor(15, TimeUnit.SECONDS)) {
                 BufferedReader stdOut = new BufferedReader(new InputStreamReader(process.getInputStream()));
                 while((str = stdOut.readLine()) != null) {
                     System.out.println(str);
@@ -186,6 +186,7 @@ public class SpecGenerator {
                     }
                 }
                 System.out.println("**********    Eusolver Finish    **********\n");
+                return result;
             }
             else {
                 // 2023-03-16(Thu) SoheeJung
@@ -194,17 +195,12 @@ public class SpecGenerator {
                 Process p = Runtime.getRuntime().exec(killComment.split(" "));
                 p.waitFor();
                 System.out.println("Timeout occurred !!\n");
+                return null;
             }
-            
-            process.destroy();
-            process.destroyForcibly();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        
-        process.destroy();
-        process.destroyForcibly();
-        return result;
+        return null;
     }
 
     /**
@@ -288,6 +284,13 @@ public class SpecGenerator {
                     // and make leafParent to leaf node.
                     if(eusolver_result != null) {
                         leafParent.setValue(eusolver_result);
+                        leafParent.setLeftchild(null);
+                        leafParent.setRightchild(null);
+                    } 
+                    // 2023-03-17(Fri) SoheeJung
+                    // predicate merge part (if eusolver result is null, then merge predicate.)
+                    else {
+                        leafParent.setValue(pred.printPrefix(leafParent));
                         leafParent.setLeftchild(null);
                         leafParent.setRightchild(null);
                     }
