@@ -1,6 +1,6 @@
 (set-logic LIA)
 
-(synth-fun simplify ( (rt_input.obsDistance_3 Int) (rt_state.zone_1 Int) (Fast_speed Int) (rt_state.speed_status Int) (rt_state.zone_0 Int) (rt_input.obsDistance_2 Int) (rt_input.obsDistance_1 Int) ) Bool
+(synth-fun simplify ( (rt_input.tc Int) (rt_input.tb Int) (rt_input.ta Int) ) Bool
 	((Start Bool (
 		true
 		false
@@ -14,13 +14,9 @@
 		(<= StartInt StartInt)
 	))
 	(StartInt Int (
-		rt_input.obsDistance_3
-		rt_state.zone_1
-		Fast_speed
-		rt_state.speed_status
-		rt_state.zone_0
-		rt_input.obsDistance_2
-		rt_input.obsDistance_1
+		rt_input.tc
+		rt_input.tb
+		rt_input.ta
 		-1
 		0
 		1
@@ -38,16 +34,12 @@
 	)
 )
 
-(declare-var rt_input.obsDistance_3 Int)
-(declare-var rt_state.zone_1 Int)
-(declare-var Fast_speed Int)
-(declare-var rt_state.speed_status Int)
-(declare-var rt_state.zone_0 Int)
-(declare-var rt_input.obsDistance_2 Int)
-(declare-var rt_input.obsDistance_1 Int)
+(declare-var rt_input.tc Int)
+(declare-var rt_input.tb Int)
+(declare-var rt_input.ta Int)
 
-(constraint (= (simplify rt_input.obsDistance_3 rt_state.zone_1 Fast_speed rt_state.speed_status rt_state.zone_0 rt_input.obsDistance_2 rt_input.obsDistance_1 )
-	( > 14 rt_input.obsDistance_1 ) 
+(constraint (= (simplify rt_input.tc rt_input.tb rt_input.ta )
+	( and (> rt_input.tc 7) (and (and (not (= 3 rt_input.ta)) (> rt_input.tc 8)) (> 6 rt_input.tb)) ) 
 	))
 
 (check-synth)

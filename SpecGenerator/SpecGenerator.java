@@ -5,7 +5,9 @@
 package SpecGenerator;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -175,28 +177,42 @@ public class SpecGenerator {
             //     return null;
             // }
             
-            if(process.waitFor(15, TimeUnit.SECONDS)) {
-                BufferedReader stdOut = new BufferedReader(new InputStreamReader(process.getInputStream()));
-                while((str = stdOut.readLine()) != null) {
-                    System.out.println(str);
-                    if(!str.contains("simplify")) {
-                        result = str.trim();
-                        // Last parenthesis elimination
-                        result = result.substring(0, result.length() - 1);
-                    }
+            // if(process.waitFor(15, TimeUnit.SECONDS)) {
+            //     BufferedReader stdOut = new BufferedReader(new InputStreamReader(process.getInputStream()));
+            //     while((str = stdOut.readLine()) != null) {
+            //         System.out.println(str);
+            //         if(!str.contains("simplify")) {
+            //             result = str.trim();
+            //             // Last parenthesis elimination
+            //             result = result.substring(0, result.length() - 1);
+            //         }
+            //     }
+            //     System.out.println("**********    Eusolver Finish    **********\n");
+            //     return result;
+            // }
+            // else {
+            //     // 2023-03-16(Thu) SoheeJung
+            //     // kill zombie eusolver process
+            //     String killComment = ("killall python3.6");
+            //     Process p = Runtime.getRuntime().exec(killComment.split(" "));
+            //     p.waitFor();
+            //     System.out.println("Timeout occurred !!\n");
+            //     return null;
+            // }
+            
+            // 2023-03-31(Fri) SoheeJung
+            // No-timeout eusolver execution
+            BufferedReader stdOut = new BufferedReader(new InputStreamReader(process.getInputStream()));
+            while((str = stdOut.readLine()) != null) {
+                System.out.println(str);
+                if(!str.contains("simplify")) {
+                    result = str.trim();
+                    // Last parenthesis elimination
+                    result = result.substring(0, result.length() - 1);
                 }
-                System.out.println("**********    Eusolver Finish    **********\n");
-                return result;
             }
-            else {
-                // 2023-03-16(Thu) SoheeJung
-                // kill zombie eusolver process
-                String killComment = ("killall python3.6");
-                Process p = Runtime.getRuntime().exec(killComment.split(" "));
-                p.waitFor();
-                System.out.println("Timeout occurred !!\n");
-                return null;
-            }
+            System.out.println("**********    Eusolver Finish    **********\n");
+            return result;
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -210,7 +226,7 @@ public class SpecGenerator {
      * @param start : process start time
      * @param end : process end time
      */
-    public static void getElapsedTime(long start, long end) {
+    public static String getElapsedTime(long start, long end) {
         long secondsInMilli = 1000;
 		long minutesInMilli = secondsInMilli * 60;
 		long hoursInMilli = minutesInMilli * 60;
@@ -229,83 +245,111 @@ public class SpecGenerator {
 		
 		long elapsedSeconds = different / secondsInMilli;
 		
-		System.out.printf("\nTotal Conversion Time : %d days, %d hours, %d minutes, %d seconds%n", elapsedDays, elapsedHours, elapsedMinutes, elapsedSeconds);
+		return String.format("Total Conversion Time : %d days, %d hours, %d minutes, %d seconds%n", elapsedDays, elapsedHours, elapsedMinutes, elapsedSeconds);
     }
 
     // main
     public static void main(String[] args) throws IOException, InterruptedException {
-        // 2023-03-09(Thu) SoheeJung
-        // Time Checking (start time)
-        long startTime = System.currentTimeMillis();
+        // 2023-03-31(Fri) SoheeJung
+        // experiment line addition (input from file / output to file)
+        BufferedReader reader = new BufferedReader(new FileReader(("./experiment/predicate_list.txt")));
+        PrintWriter writer = new PrintWriter(new FileWriter("./experiment/predicate_output.txt"));
 
-        // Get Input String
-        String input = "((!(1 >= rt_state.zone_0) and !(2 >= rt_input.obsDistance_3) and !(2 >= rt_input.obsDistance_2) and (14 > rt_input.obsDistance_1) and !(rt_state.speed_status == Fast_speed) and (2 == rt_state.zone_1) and (19 > rt_input.obsDistance_2) and !(2 >= rt_input.obsDistance_1) and !(14 > rt_input.obsDistance_3)) or (!(1 >= rt_state.zone_0) and !(2 >= rt_input.obsDistance_3) and !(2 >= rt_input.obsDistance_2) and (14 > rt_input.obsDistance_1) and !(rt_state.speed_status == Fast_speed) and (2 == rt_state.zone_1) and !(19 > rt_input.obsDistance_2)) or (!(1 >= rt_state.zone_0) and !(2 >= rt_input.obsDistance_3) and !(2 >= rt_input.obsDistance_2) and !(14 > rt_input.obsDistance_1)))";
-
-        // Make instance OR object
-        SpecGenerator spec = new SpecGenerator(input);
-        Predicate pred = spec.getPredicate();
-        PredicateElement predElement = pred.getPredicateRoot();
-
-        /**
-         * 2023-03-08(Wed) SoheeJung
-         * <Algorithm>
-         * 1. Make a prefix from the lowest predicate element
-         * 2. Generate spec file(.sl file) using prefix
-         * 3. Regenerate tree based on eusolver result
-         *      3-1. eusolver result does not necessarily require each element to be make of each tree element.
-         */
-        int mergePredicateCount = 1;
-
-        while(true) {
-            System.out.println("##########      " + String.valueOf(mergePredicateCount) + " merge start     ###########");
-
+        String str;
+        Integer index = 1;
+        while((str = reader.readLine()) != null) {
             // 2023-03-09(Thu) SoheeJung
-            // Initialize leavesParent set then get new leavesParent set.
-            pred.setLeavesParent(new HashSet<PredicateElement>());
-            Set<PredicateElement> leavesParent = pred.getLeavesParent();
-            if(leavesParent.contains(predElement)) break;
+            // Time Checking (start time)
+            long startTime = System.currentTimeMillis();
 
-            for(PredicateElement leafParent : leavesParent) {
-                // leafParent is "-" OR "+", then make this prefix form leaf node.
-                // leafParent is "or", then just merge all node. (using prefix form)
-                if(leafParent.getValue().equals("-") || leafParent.getValue().equals("+") || leafParent.getValue().equals("or")) {
-                    leafParent.setValue(pred.printPrefix(leafParent));
-                    leafParent.setLeftchild(null);
-                    leafParent.setRightchild(null);
-                }
-                else {
-                    // make spec file (.sl file)
-                    spec.makeSpecFile("./output.sl", pred.printPrefix(leafParent), pred.getVariables());
+            // Get Input String
+            String input = str;
+            writer.println(String.valueOf(index++) + ".");
+            writer.println("[original predicate]");
+            writer.println(input);
 
-                    // eusolver execution
-                    String eusolver_result = spec.eusolverConnector("./output.sl");
-                    
-                    // convert leafParent value from original to generated eusolver result.
-                    // and make leafParent to leaf node.
-                    if(eusolver_result != null) {
-                        leafParent.setValue(eusolver_result);
-                        leafParent.setLeftchild(null);
-                        leafParent.setRightchild(null);
-                    } 
-                    // 2023-03-17(Fri) SoheeJung
-                    // predicate merge part (if eusolver result is null, then merge predicate.)
-                    else {
-                        leafParent.setValue(pred.printPrefix(leafParent));
-                        leafParent.setLeftchild(null);
-                        leafParent.setRightchild(null);
-                    }
-                }
-            }
+            // Make instance OR object
+            SpecGenerator spec = new SpecGenerator(input);
+            Predicate pred = spec.getPredicate();
+            PredicateElement predElement = pred.getPredicateRoot();
 
-            System.out.println("##########      " + String.valueOf(mergePredicateCount) + " merge finish     ###########\n");
-            mergePredicateCount++;
+            /**
+             * 2023-04-04(Tue) SoheeJung
+             * <Change the algorithm>
+             * 1. no consider or / consider and
+             * 2. if variable is same, then put same queue / if variable is different, then put defferent queue
+             * 3. element in same queue, make spec file and then run EUsolver synthesis.
+             */
+            // /**
+            //  * 2023-03-08(Wed) SoheeJung
+            //  * <Algorithm>
+            //  * 1. Make a prefix from the lowest predicate element
+            //  * 2. Generate spec file(.sl file) using prefix
+            //  * 3. Regenerate tree based on eusolver result
+            //  *      3-1. eusolver result does not necessarily require each element to be make of each tree element.
+            //  */
+            // int mergePredicateCount = 1;
+
+            // while(true) {
+            //     System.out.println("##########      " + String.valueOf(mergePredicateCount) + " merge start     ###########");
+
+            //     // 2023-03-09(Thu) SoheeJung
+            //     // Initialize leavesParent set then get new leavesParent set.
+            //     pred.setLeavesParent(new HashSet<PredicateElement>());
+            //     Set<PredicateElement> leavesParent = pred.getLeavesParent();
+            //     if(leavesParent.contains(predElement)) break;
+
+            //     for(PredicateElement leafParent : leavesParent) {
+            //         // leafParent is "-" OR "+", then make this prefix form leaf node.
+            //         // leafParent is "or", then just merge all node. (using prefix form)
+            //         if(leafParent.getValue().equals("-") || leafParent.getValue().equals("+") || leafParent.getValue().equals("or")) {
+            //             leafParent.setValue(pred.printPrefix(leafParent));
+            //             leafParent.setLeftchild(null);
+            //             leafParent.setRightchild(null);
+            //         }
+            //         else {
+            //             // make spec file (.sl file)
+            //             spec.makeSpecFile("./output.sl", pred.printPrefix(leafParent), pred.getVariables());
+
+            //             // eusolver execution
+            //             String eusolver_result = spec.eusolverConnector("./output.sl");
+                        
+            //             // convert leafParent value from original to generated eusolver result.
+            //             // and make leafParent to leaf node.
+            //             if(eusolver_result != null) {
+            //                 leafParent.setValue(eusolver_result);
+            //                 leafParent.setLeftchild(null);
+            //                 leafParent.setRightchild(null);
+            //             } 
+            //             // 2023-03-17(Fri) SoheeJung
+            //             // predicate merge part (if eusolver result is null, then merge predicate.)
+            //             else {
+            //                 leafParent.setValue(pred.printPrefix(leafParent));
+            //                 leafParent.setLeftchild(null);
+            //                 leafParent.setRightchild(null);
+            //             }
+            //         }
+            //     }
+
+            //     System.out.println("##########      " + String.valueOf(mergePredicateCount) + " merge finish     ###########\n");
+            //     mergePredicateCount++;
+            // }
+
+            
+
+            writer.println("\n[Final output]");
+            System.out.println("final result : " + pred.printPrefix(predElement));
+            writer.println(pred.printPrefix(predElement));
+
+            long endTime = System.currentTimeMillis();
+            
+            writer.println("\n[Total time]");
+            System.out.println(getElapsedTime(startTime, endTime));
+            writer.println(getElapsedTime(startTime, endTime) + "\n");
         }
 
-        System.out.println("final result : " + pred.printPrefix(predElement));
-
-        long endTime = System.currentTimeMillis();
-
-        getElapsedTime(startTime, endTime);
+        reader.close();
+        writer.close();
     }
 
     // Getter & Setter

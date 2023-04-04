@@ -257,6 +257,14 @@ public class Predicate {
             // 2023-03-17(Fri) SoheeJung
             // Another error : if both child is leaf nodes, then add leaves Parent. if not, don't do that. but current code add all the leaf nodes to leavesParent.
             leavesParent.add(root.getParent());
+
+            // 2023-03-31(Fri) SoheeJung
+            // Fix error
+            if((root.getParent().getLeftchild() != null) && (root.getParent().getRightchild() != null) && 
+            ((root.getParent().getLeftchild().getLeftchild() != null) || (root.getParent().getLeftchild().getRightchild() != null) 
+            || (root.getParent().getRightchild().getLeftchild() != null) || (root.getParent().getRightchild().getRightchild() != null))) {
+                leavesParent.remove(root.getParent());
+            } 
             return;
         }
         
