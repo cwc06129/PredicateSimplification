@@ -252,7 +252,7 @@ public class SpecGenerator {
     public static void main(String[] args) throws IOException, InterruptedException {
         // 2023-03-31(Fri) SoheeJung
         // experiment line addition (input from file / output to file)
-        BufferedReader reader = new BufferedReader(new FileReader(("./experiment/predicate_list.txt")));
+        BufferedReader reader = new BufferedReader(new FileReader(("./experiment/copy.txt")));
         PrintWriter writer = new PrintWriter(new FileWriter("./experiment/predicate_output.txt"));
 
         String str;
@@ -280,6 +280,20 @@ public class SpecGenerator {
              * 2. if variable is same, then put same queue / if variable is different, then put defferent queue
              * 3. element in same queue, make spec file and then run EUsolver synthesis.
              */
+            while(true) {
+                PredicateElement orNode = pred.findNoCheckORNode(predElement);
+
+                if((orNode.getValue().equals("or"))) {    
+                    PredicateElement andNode = orNode.getLeftchild();
+                    System.out.println(pred.collectUnitPredicate(andNode));
+                } else {
+                    pred.collectUnitPredicate(orNode);
+                    System.out.println(pred.collectUnitPredicate(orNode));
+                    break;
+                }
+            }
+
+            
             // /**
             //  * 2023-03-08(Wed) SoheeJung
             //  * <Algorithm>
@@ -335,21 +349,21 @@ public class SpecGenerator {
             //     mergePredicateCount++;
             // }
 
-            
 
-            writer.println("\n[Final output]");
-            System.out.println("final result : " + pred.printPrefix(predElement));
-            writer.println(pred.printPrefix(predElement));
 
-            long endTime = System.currentTimeMillis();
+        //     writer.println("\n[Final output]");
+        //     System.out.println("final result : " + pred.printPrefix(predElement));
+        //     writer.println(pred.printPrefix(predElement));
+
+        //     long endTime = System.currentTimeMillis();
             
-            writer.println("\n[Total time]");
-            System.out.println(getElapsedTime(startTime, endTime));
-            writer.println(getElapsedTime(startTime, endTime) + "\n");
+        //     writer.println("\n[Total time]");
+        //     System.out.println(getElapsedTime(startTime, endTime));
+        //     writer.println(getElapsedTime(startTime, endTime) + "\n");
         }
 
-        reader.close();
-        writer.close();
+        // reader.close();
+        // writer.close();
     }
 
     // Getter & Setter

@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 import java.util.Stack;
 
@@ -20,6 +21,9 @@ public class Predicate {
     // Constructor
     public Predicate(String[] predicateInput) {
         this.predicateRoot = makeParseTree(predicateInput);
+        // 2023-04-05(Wed) SoheeJung
+        // variable addition to predicateElement
+        insertVariableToParsetree(getPredicateRoot());
         this.leavesParent = new HashSet<PredicateElement>();
     }
 
@@ -97,7 +101,7 @@ public class Predicate {
                         if(operatorStack.peek().equals("!")) {
                             operatorStack.pop();
                             PredicateElement operand = predElementStack.pop();
-                            PredicateElement negation_element = new PredicateElement("not", null, null, operand);
+                            PredicateElement negation_element = new PredicateElement("not", null, null, operand, false, null);
                             operand.setParent(negation_element);
                             predElementStack.push(negation_element);
                         }
@@ -109,14 +113,14 @@ public class Predicate {
                         if(operator.equals("==")) {
                             PredicateElement operand_2 = predElementStack.pop();
                             PredicateElement operand_1 = predElementStack.pop();
-                            PredicateElement equal_element = new PredicateElement("=", null, operand_1, operand_2);
+                            PredicateElement equal_element = new PredicateElement("=", null, operand_1, operand_2, false, null);
                             operand_2.setParent(equal_element);
                             operand_1.setParent(equal_element);
                             predElementStack.push(equal_element);
                         } else {
                             PredicateElement operand_2 = predElementStack.pop();
                             PredicateElement operand_1 = predElementStack.pop();
-                            PredicateElement relation_element = new PredicateElement(operator, null, operand_1, operand_2);
+                            PredicateElement relation_element = new PredicateElement(operator, null, operand_1, operand_2, false, null);
                             operand_2.setParent(relation_element);
                             operand_1.setParent(relation_element);
                             predElementStack.push(relation_element);
@@ -139,7 +143,7 @@ public class Predicate {
                     else if(and_or_operator.contains(operator)) {
                         PredicateElement operand_2 = predElementStack.pop();
                         PredicateElement operand_1 = predElementStack.pop();
-                        PredicateElement and_or_element = new PredicateElement(operator, null, operand_1, operand_2);
+                        PredicateElement and_or_element = new PredicateElement(operator, null, operand_1, operand_2, false, null);
                         operand_2.setParent(and_or_element);
                         operand_1.setParent(and_or_element);
                         predElementStack.push(and_or_element);
@@ -159,7 +163,7 @@ public class Predicate {
                 // if(operatorStack.peek().equals("!")) {
                 //     operatorStack.pop();
                 //     PredicateElement operand = predElementStack.pop();
-                //     predElementStack.push(new PredicateElement("not", null, operand));
+                //     predElem entStack.push(new PredicateElement("not", null, operand));
                 // }
 
                 // // Exception2 : check the peek is "and", "or"
@@ -172,10 +176,11 @@ public class Predicate {
             } 
             // Case4 : variable or constant
             else {
-                predElementStack.push(new PredicateElement(predicateList[i], null, null, null));
-
                 if(!isNumeric(predicateList[i])) {
                     variable_name.add(predicateList[i]);
+                    predElementStack.push(new PredicateElement(predicateList[i], null, null, null, false, new Variable(null)));
+                } else {
+                    predElementStack.push(new PredicateElement(predicateList[i], null, null, null, false, null));
                 }
             }
         }
@@ -192,6 +197,26 @@ public class Predicate {
         setVariables(variable_list);
 
         return root;
+    }
+
+    /**
+     * @date 2023-04-04(Tue)
+     * @author SoheeJung
+     * @name insertVariableToParsetree
+     * @param root
+     * insert Variable to variable predicateElement.
+     */
+    public void insertVariableToParsetree(PredicateElement root) {
+        if(root != null) {
+            insertVariableToParsetree(root.getLeftchild());
+            for(Variable v : getVariables()) {
+                if(v.getName().equals(root.getValue())) {
+                    root.setVariable(v);
+                    break;
+                }
+            }
+            insertVariableToParsetree(root.getRightchild());
+        }
     }
 
     /**
@@ -273,6 +298,76 @@ public class Predicate {
 
         // right child check recursively
         if(root.getRightchild() != null) findAllLeavesParent(root.getRightchild());
+    }
+
+    /**
+     * @date 2023-04-04(Tue)
+     * @author SoheeJung
+     * @name findNoCheckORNode
+     * @param root : root of parse tree
+     * @return not checked or node
+     */
+    public PredicateElement findNoCheckORNode(PredicateElement root) {
+        PredicateElement temp = root;
+        PredicateElement finalOrNode = new PredicateElement();
+        
+        while(temp.getValue().equals("or")) {
+            if(temp.getCheck() == false) {
+                temp.setCheck(true);
+                return temp;
+            }
+            else {
+                temp = temp.getRightchild();
+            }
+        }
+
+        return temp;
+    }
+
+    /**
+     * @date 2023-04-04(Tue)
+     * @author SoheeJung
+     * @name collectUnitPredicate
+     * @param root : root of AND Node
+     * collect all the unit predicate from And node
+     */
+    public ArrayList<ArrayList<String>> collectUnitPredicate(PredicateElement root) {
+        PredicateElement temp = root;
+        ArrayList<ArrayList<String>> result = new ArrayList<ArrayList<String>>();
+
+        while(temp.getValue().equals("and")) {
+            if(temp.getCheck() == false) {
+                temp.setCheck(true);
+                ArrayList<String> varAndprefix = new ArrayList<String>();
+                findWhichVariable(temp.getLeftchild(), varAndprefix);
+                varAndprefix.add(printPrefix(temp.getLeftchild()));
+                result.add(varAndprefix);
+            }
+            else {
+                temp = temp.getRightchild();
+            }
+        }
+        ArrayList<String> varAndprefix = new ArrayList<String>();
+        findWhichVariable(temp, varAndprefix);
+        varAndprefix.add(printPrefix(temp));
+        result.add(varAndprefix);
+
+        return result;
+    }
+
+    /**
+     * @date 2023-04-05(Wed)
+     * @author SoheeJung
+     * @name findWhichVariable
+     * @param root
+     * find the varaible predicateElement from and Node parse tree
+     */
+    public void findWhichVariable(PredicateElement root, ArrayList<String> vars) {
+        if(root != null) {
+            if(root.getVariable() != null) vars.add(root.getValue());
+            findWhichVariable(root.getLeftchild(), vars);
+            findWhichVariable(root.getRightchild(), vars);
+        }
     }
 
     // Getter & Setter
