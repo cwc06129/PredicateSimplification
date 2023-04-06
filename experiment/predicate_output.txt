@@ -1,0 +1,196 @@
+1.
+[original predicate]
+((!(rt_input.number > 7) and (rt_input.number > 1) and !(4 == rt_input.number) and (rt_input.number >= 6) and !(7 > rt_input.number)) or (!(rt_input.number > 7) and (rt_input.number > 1) and !(4 == rt_input.number) and !(rt_input.number >= 6)))
+
+[Final output]
+( or (= 7 rt_input.number) (and (or (> 4 rt_input.number) (= 5 rt_input.number)) (> rt_input.number 1)) ) 
+
+[Total time]
+Total Conversion Time : 0 days, 0 hours, 0 minutes, 16 seconds
+
+
+2.
+[original predicate]
+(((2 >= rt_input.n1) and !(1 == (4 - rt_input.n2)) and (4 >= rt_input.n2)) or ((2 >= rt_input.n1) and !(1 == (4 - rt_input.n2)) and !(4 >= rt_input.n2) and (rt_input.n2 >= 8)) or ((2 >= rt_input.n1) and !(1 == (4 - rt_input.n2)) and !(4 >= rt_input.n2) and !(rt_input.n2 >= 8) and (6 == rt_input.n2)) or (!(2 >= rt_input.n1) and (6 == rt_input.n1) and !(rt_input.n1 == rt_input.n2) and !(1 == (4 - rt_input.n2)) and (9 > rt_input.n2)) or (!(2 >= rt_input.n1) and !(6 == rt_input.n1) and (6 == rt_input.n2) and !(4 > rt_input.n1) and !(9 == rt_input.n1)) or (!(2 >= rt_input.n1) and !(6 == rt_input.n1) and !(6 == rt_input.n2) and (2 >= rt_input.n2) and (1 == (9 - rt_input.n1))) or (!(2 >= rt_input.n1) and !(6 == rt_input.n1) and !(6 == rt_input.n2) and (2 >= rt_input.n2) and !(1 == (9 - rt_input.n1)) and (4 == rt_input.n1)))
+
+[Final output]
+( or (and (or (> 3 rt_input.n2) (= 4 rt_input.n2)) (> 3 rt_input.n1)) ( or (and (> rt_input.n2 7) (> 3 rt_input.n1)) ( or (and (= 6 rt_input.n2) (> 3 rt_input.n1)) ( or (and (and (not (or (= 3 rt_input.n2) (= rt_input.n1 rt_input.n2))) (> 9 rt_input.n2)) (and (not (= rt_input.n1 rt_input.n2)) (= 6 rt_input.n1))) ( or (and (= 6 rt_input.n2) (and (not (or (= 9 rt_input.n1) (= 6 rt_input.n1))) (> rt_input.n1 3))) ( or (and (> 3 rt_input.n2) (= 8 rt_input.n1)) (and (> 3 rt_input.n2) (= 4 rt_input.n1)) ) ) ) ) ) ) 
+
+[Total time]
+Total Conversion Time : 0 days, 0 hours, 5 minutes, 58 seconds
+
+
+3.
+[original predicate]
+(((4 == rt_input.n1) and (4 == rt_input.n2)) or ((4 == rt_input.n1) and !(4 == rt_input.n2) and (rt_input.n2 >= 8)) or (!(4 == rt_input.n1) and (4 == rt_input.n2) and (rt_input.n1 >= 8)))
+
+[Final output]
+( or (and (= 4 rt_input.n2) (= 4 rt_input.n1)) ( or (and (> rt_input.n2 7) (= 4 rt_input.n1)) (and (= 4 rt_input.n2) (> rt_input.n1 7)) ) ) 
+
+[Total time]
+Total Conversion Time : 0 days, 0 hours, 0 minutes, 1 seconds
+
+
+4.
+[original predicate]
+(((9 == rt_input.n1) and (6 >= rt_input.n2) and (6 > rt_input.n2) and (4 >= rt_input.n2)) or ((9 == rt_input.n1) and (6 >= rt_input.n2) and !(6 > rt_input.n2)) or (!(9 == rt_input.n1) and (9 == rt_input.n2) and (6 >= rt_input.n1)) or (!(9 == rt_input.n1) and !(9 == rt_input.n2) and (6 >= rt_input.n1) and (6 >= rt_input.n2) and !(2 >= rt_input.n2) and !(4 == rt_input.n2) and !(2 >= rt_input.n1) and (4 > rt_input.n1) and (4 >= rt_input.n2)) or (!(9 == rt_input.n1) and !(9 == rt_input.n2) and (6 >= rt_input.n1) and (6 >= rt_input.n2) and !(2 >= rt_input.n2) and !(4 == rt_input.n2) and !(2 >= rt_input.n1) and (4 > rt_input.n1) and !(4 >= rt_input.n2) and !(6 > rt_input.n2)) or (!(9 == rt_input.n1) and !(9 == rt_input.n2) and (6 >= rt_input.n1) and (6 >= rt_input.n2) and !(2 >= rt_input.n2) and !(4 == rt_input.n2) and !(2 >= rt_input.n1) and !(4 > rt_input.n1) and (6 == rt_input.n1) and (4 >= rt_input.n2)))
+
+[Final output]
+( or (and (> 5 rt_input.n2) (= 9 rt_input.n1)) ( or (and (= 6 rt_input.n2) (= 9 rt_input.n1)) ( or (and (= 9 rt_input.n2) (> 7 rt_input.n1)) ( or (and (= 3 rt_input.n2) (= 3 rt_input.n1)) ( or (and (= 6 rt_input.n2) (= 3 rt_input.n1)) (and (= 3 rt_input.n2) (= 6 rt_input.n1)) ) ) ) ) ) 
+
+[Total time]
+Total Conversion Time : 0 days, 0 hours, 0 minutes, 39 seconds
+
+
+5.
+[original predicate]
+(!(9 > rt_input.n2) and !(9 > rt_input.n1))
+
+[Final output]
+(and (> rt_input.n2 8) (> rt_input.n1 8)) 
+
+[Total time]
+Total Conversion Time : 0 days, 0 hours, 0 minutes, 0 seconds
+
+
+6.
+[original predicate]
+((rt_input.n1 == rt_input.n2) and !(6 >= rt_input.n2) and !(rt_input.n1 >= 8))
+
+[Final output]
+(and (and (> rt_input.n2 6) (= rt_input.n1 rt_input.n2)) (and (> 8 rt_input.n2) (= rt_input.n1 rt_input.n2))) 
+
+[Total time]
+Total Conversion Time : 0 days, 0 hours, 0 minutes, 4 seconds
+
+
+7.
+[original predicate]
+((rt_input.n1 == rt_input.n2) and (rt_input.n1 >= 8) and (9 > rt_input.n1))
+
+[Final output]
+(and (= rt_input.n1 rt_input.n2) (and (= 8 rt_input.n2) (= rt_input.n1 rt_input.n2))) 
+
+[Total time]
+Total Conversion Time : 0 days, 0 hours, 0 minutes, 3 seconds
+
+
+8.
+[original predicate]
+((6 == rt_input.n1) and !(4 >= rt_input.n2) and (6 >= rt_input.n2))
+
+[Final output]
+(and (and (> rt_input.n2 4) (> 7 rt_input.n2)) (= 6 rt_input.n1)) 
+
+[Total time]
+Total Conversion Time : 0 days, 0 hours, 0 minutes, 2 seconds
+
+
+9.
+[original predicate]
+((6 > rt_input.n1) and !(4 >= rt_input.n1) and (6 > rt_input.n2) and !(4 >= rt_input.n2))
+
+[Final output]
+(and (= 5 rt_input.n2) (= 5 rt_input.n1)) 
+
+[Total time]
+Total Conversion Time : 0 days, 0 hours, 0 minutes, 0 seconds
+
+
+10.
+[original predicate]
+(((6 == rt_input.a) and (6 > rt_input.c) and !(6 > rt_input.b)) or ((6 == rt_input.a) and !(6 > rt_input.c) and (6 >= rt_input.b)) or ((6 == rt_input.a) and !(6 > rt_input.c) and !(6 >= rt_input.b) and (6 >= rt_input.c)) or (!(6 == rt_input.a) and (6 == rt_input.b) and (6 >= rt_input.a) and !(6 > rt_input.c)) or (!(6 == rt_input.a) and (6 == rt_input.b) and !(6 >= rt_input.a) and (6 >= rt_input.c)) or (!(6 == rt_input.a) and !(6 == rt_input.b) and !(6 > rt_input.c) and (6 >= rt_input.c) and (4 >= rt_input.b) and !(6 >= rt_input.a)) or (!(6 == rt_input.a) and !(6 == rt_input.b) and !(6 > rt_input.c) and (6 >= rt_input.c) and !(4 >= rt_input.b) and (6 >= rt_input.a) and !(6 >= rt_input.b)) or (!(6 == rt_input.a) and !(6 == rt_input.b) and !(6 > rt_input.c) and (6 >= rt_input.c) and !(4 >= rt_input.b) and !(6 >= rt_input.a) and (6 > rt_input.b)))
+
+[Final output]
+( or (and (> 6 rt_input.c) (and (= 6 rt_input.a) (> rt_input.b 5))) ( or (and (> rt_input.c 5) (and (= 6 rt_input.a) (> 7 rt_input.b))) ( or (and (= 6 rt_input.c) (and (= 6 rt_input.a) (> rt_input.b 6))) ( or (and (> rt_input.c 5) (and (> 6 rt_input.a) (= 6 rt_input.b))) ( or (and (> 7 rt_input.c) (and (> rt_input.a 6) (= 6 rt_input.b))) ( or (and (= 6 rt_input.c) (and (> rt_input.a 6) (> 5 rt_input.b))) ( or (and (= 6 rt_input.c) (and (> 6 rt_input.a) (> rt_input.b 6))) (and (= 6 rt_input.c) (and (> rt_input.a 6) (= 5 rt_input.b))) ) ) ) ) ) ) ) 
+
+[Total time]
+Total Conversion Time : 0 days, 0 hours, 0 minutes, 11 seconds
+
+
+11.
+[original predicate]
+(((4 >= rt_input.a) and !(4 >= rt_input.c) and !(4 >= rt_input.b) and (6 > rt_input.b)) or ((4 >= rt_input.a) and !(4 >= rt_input.c) and !(4 >= rt_input.b) and !(6 > rt_input.b) and (6 > rt_input.c)) or (!(4 >= rt_input.a) and (6 > rt_input.a) and (4 > rt_input.b) and !(4 >= rt_input.c)) or (!(4 >= rt_input.a) and (6 > rt_input.a) and !(4 > rt_input.b) and (6 > rt_input.c) and (4 >= rt_input.b) and !(4 >= rt_input.c)) or (!(4 >= rt_input.a) and (6 > rt_input.a) and !(4 > rt_input.b) and (6 > rt_input.c) and !(4 >= rt_input.b)) or (!(4 >= rt_input.a) and (6 > rt_input.a) and !(4 > rt_input.b) and !(6 > rt_input.c) and (6 > rt_input.b)) or (!(4 >= rt_input.a) and !(6 > rt_input.a) and (6 > rt_input.b) and (6 > rt_input.c) and (4 >= rt_input.c) and !(4 >= rt_input.b)) or (!(4 >= rt_input.a) and !(6 > rt_input.a) and (6 > rt_input.b) and (6 > rt_input.c) and !(4 >= rt_input.c)))
+
+[Final output]
+( or (and (> rt_input.c 4) (and (> 5 rt_input.a) (= 5 rt_input.b))) ( or (and (= 5 rt_input.c) (and (> 5 rt_input.a) (> rt_input.b 5))) ( or (and (> rt_input.c 4) (and (= 5 rt_input.a) (> 4 rt_input.b))) ( or (and (= 5 rt_input.c) (and (= 5 rt_input.a) (= 4 rt_input.b))) ( or (and (> 6 rt_input.c) (and (= 5 rt_input.a) (> rt_input.b 4))) ( or (and (> rt_input.c 5) (and (= 5 rt_input.a) (and (> rt_input.b 3) (> 6 rt_input.b)))) ( or (and (> 5 rt_input.c) (and (> rt_input.a 5) (= 5 rt_input.b))) (and (= 5 rt_input.c) (and (> rt_input.a 5) (> 6 rt_input.b))) ) ) ) ) ) ) ) 
+
+[Total time]
+Total Conversion Time : 0 days, 0 hours, 0 minutes, 7 seconds
+
+
+12.
+[original predicate]
+(((2 >= rt_input.a) and (2 == rt_input.a) and (2 >= rt_input.c) and (1 >= rt_input.b) and !(1 >= rt_input.c)) or ((2 >= rt_input.a) and (2 == rt_input.a) and (2 >= rt_input.c) and !(1 >= rt_input.b)) or ((2 >= rt_input.a) and (2 == rt_input.a) and !(2 >= rt_input.c) and (2 >= rt_input.b)) or ((2 >= rt_input.a) and !(2 == rt_input.a) and (2 == rt_input.b) and !(1 >= rt_input.c)) or ((2 >= rt_input.a) and !(2 == rt_input.a) and !(2 == rt_input.b) and (2 >= rt_input.c) and !(1 >= rt_input.c) and !(2 >= rt_input.b)) or (!(2 >= rt_input.a) and (2 >= rt_input.b) and (2 >= rt_input.c) and (2 == rt_input.b)) or (!(2 >= rt_input.a) and (2 >= rt_input.b) and (2 >= rt_input.c) and !(2 == rt_input.b) and !(1 >= rt_input.c)))
+
+[Final output]
+( or (and (= 2 rt_input.c) (and (= 2 rt_input.a) (> 2 rt_input.b))) ( or (and (> 3 rt_input.c) (and (= 2 rt_input.a) (> rt_input.b 1))) ( or (and (> rt_input.c 2) (and (= 2 rt_input.a) (> 3 rt_input.b))) ( or (and (> rt_input.c 1) (and (> 2 rt_input.a) (= 2 rt_input.b))) ( or (and (= 2 rt_input.c) (and (> 2 rt_input.a) (> rt_input.b 2))) ( or (and (> 3 rt_input.c) (and (> rt_input.a 2) (= 2 rt_input.b))) (and (= 2 rt_input.c) (and (> rt_input.a 2) (> 2 rt_input.b))) ) ) ) ) ) ) 
+
+[Total time]
+Total Conversion Time : 0 days, 0 hours, 0 minutes, 5 seconds
+
+
+13.
+[original predicate]
+(((4 > rt_input.c) and (2 >= rt_input.c) and !(2 >= rt_input.a) and (4 > rt_input.a) and !(2 >= rt_input.b)) or ((4 > rt_input.c) and (2 >= rt_input.c) and !(2 >= rt_input.a) and !(4 > rt_input.a) and (4 > rt_input.b) and !(2 >= rt_input.b)) or ((4 > rt_input.c) and !(2 >= rt_input.c) and (4 > rt_input.b) and (2 >= rt_input.a) and !(2 >= rt_input.b)) or ((4 > rt_input.c) and !(2 >= rt_input.c) and (4 > rt_input.b) and !(2 >= rt_input.a)) or ((4 > rt_input.c) and !(2 >= rt_input.c) and !(4 > rt_input.b) and (4 > rt_input.a)) or (!(4 > rt_input.c) and (4 > rt_input.b) and (4 > rt_input.a) and (2 >= rt_input.b) and !(2 >= rt_input.a)) or (!(4 > rt_input.c) and (4 > rt_input.b) and (4 > rt_input.a) and !(2 >= rt_input.b)))
+
+[Final output]
+( or (and (> 3 rt_input.c) (and (= 3 rt_input.a) (> rt_input.b 2))) ( or (and (> 3 rt_input.c) (and (> rt_input.a 3) (= 3 rt_input.b))) ( or (and (= 3 rt_input.c) (and (> 3 rt_input.a) (= 3 rt_input.b))) ( or (and (= 3 rt_input.c) (and (> rt_input.a 2) (> 4 rt_input.b))) ( or (and (= 3 rt_input.c) (and (> 4 rt_input.a) (> rt_input.b 3))) ( or (and (> rt_input.c 3) (and (= 3 rt_input.a) (> 3 rt_input.b))) (and (> rt_input.c 3) (and (> 4 rt_input.a) (= 3 rt_input.b))) ) ) ) ) ) ) 
+
+[Total time]
+Total Conversion Time : 0 days, 0 hours, 0 minutes, 5 seconds
+
+
+14.
+[original predicate]
+(((8 > rt_input.b) and !(8 > rt_input.a) and !(8 > rt_input.c) and (8 >= rt_input.c)) or ((8 > rt_input.b) and !(8 > rt_input.a) and !(8 > rt_input.c) and !(8 >= rt_input.c) and (8 == rt_input.a)) or (!(8 > rt_input.b) and (8 == rt_input.a) and (8 >= rt_input.c)) or (!(8 > rt_input.b) and (8 == rt_input.a) and !(8 >= rt_input.c) and (8 >= rt_input.b)) or (!(8 > rt_input.b) and !(8 == rt_input.a) and (8 > rt_input.c) and !(8 > rt_input.a) and (8 >= rt_input.b)) or (!(8 > rt_input.b) and !(8 == rt_input.a) and !(8 > rt_input.c) and (8 >= rt_input.c) and (8 >= rt_input.a)) or (!(8 > rt_input.b) and !(8 == rt_input.a) and !(8 > rt_input.c) and (8 >= rt_input.c) and !(8 >= rt_input.a) and (8 >= rt_input.b)) or (!(8 > rt_input.b) and !(8 == rt_input.a) and !(8 > rt_input.c) and !(8 >= rt_input.c) and (8 == rt_input.b) and (8 >= rt_input.a)))
+
+[Final output]
+( or (and (= 8 rt_input.c) (and (> rt_input.a 7) (> 8 rt_input.b))) ( or (and (> rt_input.c 8) (and (= 8 rt_input.a) (> 8 rt_input.b))) ( or (and (> 9 rt_input.c) (and (= 8 rt_input.a) (> rt_input.b 7))) ( or (and (> rt_input.c 8) (and (= 8 rt_input.a) (= 8 rt_input.b))) ( or (and (> 8 rt_input.c) (and (> rt_input.a 8) (= 8 rt_input.b))) ( or (and (= 8 rt_input.c) (and (> 8 rt_input.a) (> rt_input.b 7))) ( or (and (= 8 rt_input.c) (and (> rt_input.a 8) (= 8 rt_input.b))) (and (> rt_input.c 8) (and (> 8 rt_input.a) (= 8 rt_input.b))) ) ) ) ) ) ) ) 
+
+[Total time]
+Total Conversion Time : 0 days, 0 hours, 0 minutes, 7 seconds
+
+
+15.
+[original predicate]
+(((6 >= rt_input.c) and !(6 >= rt_input.b) and !(6 >= rt_input.a) and (8 > rt_input.a)) or ((6 >= rt_input.c) and !(6 >= rt_input.b) and !(6 >= rt_input.a) and !(8 > rt_input.a) and (8 > rt_input.b)) or (!(6 >= rt_input.c) and (8 > rt_input.c) and (6 >= rt_input.b) and !(6 >= rt_input.a)) or (!(6 >= rt_input.c) and (8 > rt_input.c) and !(6 >= rt_input.b) and (8 > rt_input.a)) or (!(6 >= rt_input.c) and (8 > rt_input.c) and !(6 >= rt_input.b) and !(8 > rt_input.a) and (8 > rt_input.b)) or (!(6 >= rt_input.c) and !(8 > rt_input.c) and (8 > rt_input.b) and (6 >= rt_input.b) and !(6 >= rt_input.a) and (8 > rt_input.a)) or (!(6 >= rt_input.c) and !(8 > rt_input.c) and (8 > rt_input.b) and !(6 >= rt_input.b) and (8 > rt_input.a)))
+
+[Final output]
+( or (and (> 7 rt_input.c) (and (= 7 rt_input.a) (> rt_input.b 6))) ( or (and (> 7 rt_input.c) (and (> rt_input.a 7) (= 7 rt_input.b))) ( or (and (= 7 rt_input.c) (and (> rt_input.a 6) (> 7 rt_input.b))) ( or (and (= 7 rt_input.c) (and (> 8 rt_input.a) (> rt_input.b 6))) ( or (and (= 7 rt_input.c) (and (> rt_input.a 7) (= 7 rt_input.b))) ( or (and (> rt_input.c 7) (and (= 7 rt_input.a) (> 7 rt_input.b))) (and (> rt_input.c 7) (and (> 8 rt_input.a) (= 7 rt_input.b))) ) ) ) ) ) ) 
+
+[Total time]
+Total Conversion Time : 0 days, 0 hours, 0 minutes, 6 seconds
+
+
+16.
+[original predicate]
+(((4 == rt_input.b) and (4 == rt_input.a)) or ((4 == rt_input.b) and !(4 == rt_input.a) and (4 >= rt_input.c) and (4 > rt_input.a) and !(4 > rt_input.c)) or ((4 == rt_input.b) and !(4 == rt_input.a) and (4 >= rt_input.c) and !(4 > rt_input.a)) or ((4 == rt_input.b) and !(4 == rt_input.a) and !(4 >= rt_input.c) and (4 >= rt_input.a)) or (!(4 == rt_input.b) and (4 == rt_input.a) and (4 >= rt_input.c) and (4 >= rt_input.b) and !(4 > rt_input.c)) or (!(4 == rt_input.b) and (4 == rt_input.a) and (4 >= rt_input.c) and !(4 >= rt_input.b)) or (!(4 == rt_input.b) and (4 == rt_input.a) and !(4 >= rt_input.c) and (4 > rt_input.b)) or (!(4 == rt_input.b) and !(4 == rt_input.a) and (4 >= rt_input.c) and !(4 > rt_input.c) and (4 > rt_input.a) and !(4 > rt_input.b)) or (!(4 == rt_input.b) and !(4 == rt_input.a) and (4 >= rt_input.c) and !(4 > rt_input.c) and !(4 > rt_input.a) and (4 > rt_input.b)))
+
+[Final output]
+( or (and (= 4 rt_input.a) (= 4 rt_input.b)) ( or (and (= 4 rt_input.c) (and (> 4 rt_input.a) (= 4 rt_input.b))) ( or (and (> 5 rt_input.c) (and (> rt_input.a 4) (= 4 rt_input.b))) ( or (and (> rt_input.c 4) (and (> 4 rt_input.a) (= 4 rt_input.b))) ( or (and (= 4 rt_input.c) (and (= 4 rt_input.a) (> 4 rt_input.b))) ( or (and (> 5 rt_input.c) (and (= 4 rt_input.a) (> rt_input.b 4))) ( or (and (> rt_input.c 4) (and (= 4 rt_input.a) (> 4 rt_input.b))) ( or (and (= 4 rt_input.c) (and (> 4 rt_input.a) (> rt_input.b 4))) (and (= 4 rt_input.c) (and (> rt_input.a 4) (> 4 rt_input.b))) ) ) ) ) ) ) ) ) 
+
+[Total time]
+Total Conversion Time : 0 days, 0 hours, 0 minutes, 7 seconds
+
+
+17.
+[original predicate]
+(((1 >= rt_input.c) and (1 >= rt_input.b) and (1 > rt_input.c) and !(1 > rt_input.b) and !(1 > rt_input.a)) or ((1 >= rt_input.c) and (1 >= rt_input.b) and !(1 > rt_input.c) and (1 > rt_input.a) and !(1 > rt_input.b)) or ((1 >= rt_input.c) and (1 >= rt_input.b) and !(1 > rt_input.c) and !(1 > rt_input.a)) or ((1 >= rt_input.c) and !(1 >= rt_input.b) and (1 >= rt_input.a) and (1 > rt_input.c) and (1 == rt_input.a)) or ((1 >= rt_input.c) and !(1 >= rt_input.b) and (1 >= rt_input.a) and !(1 > rt_input.c)) or (!(1 >= rt_input.c) and (1 >= rt_input.b) and (1 >= rt_input.a) and (1 == rt_input.b)) or (!(1 >= rt_input.c) and (1 >= rt_input.b) and (1 >= rt_input.a) and !(1 == rt_input.b) and !(1 > rt_input.a)))
+
+[Final output]
+( or (and (> 1 rt_input.c) (and (> rt_input.a 0) (= 1 rt_input.b))) ( or (and (= 1 rt_input.c) (and (> 1 rt_input.a) (= 1 rt_input.b))) ( or (and (= 1 rt_input.c) (and (> rt_input.a 0) (> 2 rt_input.b))) ( or (and (> 1 rt_input.c) (and (= 1 rt_input.a) (> rt_input.b 1))) ( or (and (= 1 rt_input.c) (and (> 2 rt_input.a) (> rt_input.b 1))) ( or (and (> rt_input.c 1) (and (> 2 rt_input.a) (= 1 rt_input.b))) (and (> rt_input.c 1) (and (= 1 rt_input.a) (> 1 rt_input.b))) ) ) ) ) ) ) 
+
+[Total time]
+Total Conversion Time : 0 days, 0 hours, 0 minutes, 5 seconds
+
+
+18.
+[original predicate]
+(((8 >= rt_input.a) and !(8 >= rt_input.b) and !(8 >= rt_input.c)) or (!(8 >= rt_input.a) and (8 >= rt_input.b) and !(8 >= rt_input.c)) or (!(8 >= rt_input.a) and !(8 >= rt_input.b)))
+
+[Final output]
+( or (and (> rt_input.c 8) (and (> 9 rt_input.a) (> rt_input.b 8))) ( or (and (> rt_input.c 8) (and (> rt_input.a 8) (> 9 rt_input.b))) (and (> rt_input.a 8) (> rt_input.b 8)) ) ) 
+
+[Total time]
+Total Conversion Time : 0 days, 0 hours, 0 minutes, 2 seconds

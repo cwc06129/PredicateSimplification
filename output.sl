@@ -39,7 +39,7 @@
 (declare-var rt_input.ta Int)
 
 (constraint (= (simplify rt_input.tc rt_input.tb rt_input.ta )
-	( and (> rt_input.tc 7) (and (and (not (= 3 rt_input.ta)) (> rt_input.tc 8)) (> 6 rt_input.tb)) ) 
+	( and (and (not (= 8 rt_input.ta)) (>= rt_input.tc rt_input.ta)) (and (> rt_input.ta 1) (> rt_input.ta rt_input.tb)))
 	))
 
 (check-synth)

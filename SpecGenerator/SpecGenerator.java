@@ -14,8 +14,8 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Set;
-import java.util.concurrent.TimeUnit;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class SpecGenerator {
     // attribute
@@ -253,10 +253,10 @@ public class SpecGenerator {
         // 2023-03-31(Fri) SoheeJung
         // experiment line addition (input from file / output to file)
         BufferedReader reader = new BufferedReader(new FileReader(("./experiment/copy.txt")));
-        PrintWriter writer = new PrintWriter(new FileWriter("./experiment/predicate_output.txt"));
+        PrintWriter writer = new PrintWriter(new FileWriter("./experiment/predicate_triangle_output.txt"));
 
         String str;
-        Integer index = 1;
+        Integer index = 19;
         while((str = reader.readLine()) != null) {
             // 2023-03-09(Thu) SoheeJung
             // Time Checking (start time)
@@ -284,14 +284,144 @@ public class SpecGenerator {
                 PredicateElement orNode = pred.findNoCheckORNode(predElement);
 
                 if((orNode.getValue().equals("or"))) {    
+                    ArrayList<String> result = new ArrayList<>();
                     PredicateElement andNode = orNode.getLeftchild();
-                    System.out.println(pred.collectUnitPredicate(andNode));
+                    // make variable list
+                    ArrayList<ArrayList<String>> unitPredicates = pred.collectUnitPredicate(andNode);
+                    ArrayList<String> varlist = spec.collectAllvarFromAndNode(unitPredicates);
+                    // make queue list (from variable information)
+                    ArrayList<Queue<String>> queuelist = spec.makeQueueList(varlist.size());
+                    spec.insertQueueElement(unitPredicates, queuelist, varlist);
+                    // run EUsolver
+                    for(int i = 0; i < queuelist.size(); i++) {
+                        // if eucheck is false, then there is only one predicate.
+                        // if eucheck is true, then there are many predicate in queuelist.
+                        boolean eucheck = false;
+
+                        while(true) {
+                            if(queuelist.get(i).size() == 1) {
+                                if(eucheck == false) {
+                                    // run EUsolver first, and then get string from final string, and then add final result list
+                                    // make spec file (.sl file)
+                                    spec.makeSpecFile("./output.sl", queuelist.get(i).poll(), pred.getVariables());
+        
+                                    // eusolver execution
+                                    String eusolver_result = spec.eusolverConnector("./output.sl");
+                                    result.add(eusolver_result);
+                                } else {
+                                    result.add(queuelist.get(i).poll());
+                                }
+                                break;
+                            } else {
+                                eucheck = true;
+                                String str1 = queuelist.get(i).poll();
+                                String str2 = queuelist.get(i).poll();
+                                String inputEusolver = "( and " + str1 + " " + str2 + ")";
+                                // make spec file (.sl file)
+                                spec.makeSpecFile("./output.sl", inputEusolver, pred.getVariables());
+    
+                                // eusolver execution
+                                String eusolver_result = spec.eusolverConnector("./output.sl");
+                                queuelist.get(i).add(eusolver_result);
+                            }
+                        }
+                    }
+
+                    // final result from all the variable's EUsolver synthesis.
+                    String final_result = "";
+
+                    for(int i = 0; i < (result.size() - 1); i++) {
+                        final_result += "(and ";
+                        final_result += result.get(i);
+                        final_result += " ";
+                    }
+                    final_result += result.get(result.size() - 1);
+                    for(int i = 0; i < (result.size() - 1); i++) {
+                        final_result += ")";
+                    }
+
+                    // setting final result string to orNode's leftchild
+                    PredicateElement euResultNode = new PredicateElement();
+                    euResultNode.setValue(final_result);
+                    euResultNode.setParent(orNode);
+                    orNode.setLeftchild(euResultNode);
+                    
                 } else {
-                    pred.collectUnitPredicate(orNode);
-                    System.out.println(pred.collectUnitPredicate(orNode));
+                    ArrayList<String> result = new ArrayList<>();
+                    //pred.collectUnitPredicate(orNode);
+                    // make variable list
+                    ArrayList<ArrayList<String>> unitPredicates = pred.collectUnitPredicate(orNode);
+                    ArrayList<String> varlist = spec.collectAllvarFromAndNode(unitPredicates);
+                    // make queue list (from variable information)
+                    ArrayList<Queue<String>> queuelist = spec.makeQueueList(varlist.size());
+                    spec.insertQueueElement(unitPredicates, queuelist, varlist);
+
+                    // run EUsolver
+                    for(int i = 0; i < queuelist.size(); i++) {
+                        while(true) {
+                            if(queuelist.get(i).size() == 1) {
+                                // run EUsolver first, and then get string from final string, and then add final result list
+                                // make spec file (.sl file)
+                                spec.makeSpecFile("./output.sl", queuelist.get(i).poll(), pred.getVariables());
+    
+                                // eusolver execution
+                                String eusolver_result = spec.eusolverConnector("./output.sl");
+                                result.add(eusolver_result);
+                                break;
+                            } else {
+                                String str1 = queuelist.get(i).poll();
+                                String str2 = queuelist.get(i).poll();
+                                String inputEusolver = "( and " + str1 + " " + str2 + ")";
+                                // make spec file (.sl file)
+                                spec.makeSpecFile("./output.sl", inputEusolver, pred.getVariables());
+    
+                                // eusolver execution
+                                String eusolver_result = spec.eusolverConnector("./output.sl");
+                                queuelist.get(i).add(eusolver_result);
+                            }
+                        }
+                    }
+
+                    // final result from all the variable's EUsolver synthesis.
+                    String final_result = "";
+
+                    for(int i = 0; i < (result.size() - 1); i++) {
+                        final_result += "(and ";
+                        final_result += result.get(i);
+                        final_result += " ";
+                    }
+                    final_result += result.get(result.size() - 1);
+                    for(int i = 0; i < (result.size() - 1); i++) {
+                        final_result += ")";
+                    }
+
+                    // setting final result string to orNode's rightchild
+                    if(orNode.getParent() != null) {
+                        PredicateElement euResultNode = new PredicateElement();
+                        euResultNode.setValue(final_result);
+                        euResultNode.setParent(orNode.getParent());
+                        orNode.getParent().setRightchild(euResultNode);
+                    } 
+                    // if there is no or Node, then make this result root node.
+                    else {
+                        orNode.setValue(final_result);
+                        orNode.setLeftchild(null);
+                        orNode.setRightchild(null);
+                    }
+
                     break;
                 }
             }
+
+            writer.println("\n[Final output]");
+            System.out.println("Final result : " + pred.printPrefix(predElement) + "\n");
+            writer.println(pred.printPrefix(predElement));
+
+            long endTime = System.currentTimeMillis();
+            
+            writer.println("\n[Total time]");
+            System.out.println(getElapsedTime(startTime, endTime));
+            writer.println(getElapsedTime(startTime, endTime) + "\n");
 
             
             // /**
@@ -362,8 +492,66 @@ public class SpecGenerator {
         //     writer.println(getElapsedTime(startTime, endTime) + "\n");
         }
 
-        // reader.close();
-        // writer.close();
+        reader.close();
+        writer.close();
+    }
+
+    // public method
+    /**
+     * @date 2023-04-05(Wed)
+     * @author SoheeJung
+     * @name collectAllvarFromAndNode
+     * @param varlist
+     * collect variables from and node parse tree's unit predicateElement (no duplication)
+     */
+    public ArrayList<String> collectAllvarFromAndNode(ArrayList<ArrayList<String>> varlist) {
+        HashSet<String> set = new HashSet<String>();
+
+        for(ArrayList<String> strlist : varlist) {
+            for(int i = 0; i < (strlist.size() - 1); i++) {
+                set.add(strlist.get(i));
+            }
+        }
+
+        ArrayList<String> result = new ArrayList<>(set);
+
+        return result;
+    }
+
+    /**
+     * @date 2023-04-05(Wed)
+     * @author SoheeJung
+     * @param length
+     * make as many queue arraylist as user want.
+     */
+    public ArrayList<Queue<String>> makeQueueList(Integer length) {
+        ArrayList<Queue<String>> result = new ArrayList<>();
+
+        for(int i = 0; i < length; i++) {
+            result.add(new LinkedList<String>());
+        }
+
+        return result;
+    }
+
+    /**
+     * @date 2023-04-06(Wed)
+     * @author SoheeJung
+     * @name insertQueueElement
+     * @param list
+     * @param queuelist
+     * @param varlist
+     * if the variable is same, then save them same queue.
+     * if the variable is different, then save them defferent queue.
+     */
+    public void insertQueueElement(ArrayList<ArrayList<String>> list, ArrayList<Queue<String>> queuelist, ArrayList<String> varlist) {
+        for(int i = 0; i < list.size(); i++) {
+            for(int j = 0; j < varlist.size(); j++) {
+                if(list.get(i).get(list.get(i).size() - 1).contains(varlist.get(j))) {
+                    queuelist.get(j).add(list.get(i).get(list.get(i).size() - 1));
+                }
+            }
+        }
     }
 
     // Getter & Setter
