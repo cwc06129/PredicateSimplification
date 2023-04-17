@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.concurrent.TimeUnit;
 
 public class SpecGenerator {
     // attribute
@@ -161,7 +162,7 @@ public class SpecGenerator {
      * @throws IOException
      * @throws InterruptedException
      */
-    public String eusolverConnector(String filepath) throws IOException, InterruptedException {
+    public String eusolverConnector(String filepath, String originalPredicate) throws IOException, InterruptedException {
         Process process = null;
         String str = null;
         String result = null;
@@ -169,53 +170,65 @@ public class SpecGenerator {
         try {
             System.out.println("**********    Eusolver Start    **********");
             process = Runtime.getRuntime().exec("eusolver/eusolver" + " " + filepath);
-
+            
             // if (!process.waitFor(30, TimeUnit.SECONDS)) {
             //     process.destroy();
             //     process.destroyForcibly();
             //     System.out.println("Timeout occurred!!");
             //     return null;
             // }
-            
-            // if(process.waitFor(15, TimeUnit.SECONDS)) {
-            //     BufferedReader stdOut = new BufferedReader(new InputStreamReader(process.getInputStream()));
-            //     while((str = stdOut.readLine()) != null) {
-            //         System.out.println(str);
-            //         if(!str.contains("simplify")) {
-            //             result = str.trim();
-            //             // Last parenthesis elimination
-            //             result = result.substring(0, result.length() - 1);
-            //         }
-            //     }
-            //     System.out.println("**********    Eusolver Finish    **********\n");
-            //     return result;
-            // }
-            // else {
-            //     // 2023-03-16(Thu) SoheeJung
-            //     // kill zombie eusolver process
-            //     String killComment = ("killall python3.6");
-            //     Process p = Runtime.getRuntime().exec(killComment.split(" "));
-            //     p.waitFor();
-            //     System.out.println("Timeout occurred !!\n");
-            //     return null;
-            // }
+
+            // 2023-04-13(Thu) SoheeJung
+            // add timeout limitation
+            Integer baseTimeout = 5; // 1 predicate : limited time 5s
+            Integer prediateSize = getPredicateSize(originalPredicate);
+
+            if(process.waitFor(baseTimeout * prediateSize, TimeUnit.SECONDS)) {
+                BufferedReader stdOut = new BufferedReader(new InputStreamReader(process.getInputStream()));
+                while((str = stdOut.readLine()) != null) {
+                    System.out.println(str);
+                    if(!str.contains("simplify")) {
+                        result = str.trim();
+                        // Last parenthesis elimination
+                        result = result.substring(0, result.length() - 1);
+                    }
+                }
+                System.out.println("**********    Eusolver Finish    **********\n");
+                
+                // 2023-04-13(Thu) SoheeJung
+                // if originalPredicate's size is shorter than Eusolver's result, then return originalPredicate
+                if(getPredicateSize(originalPredicate) < getPredicateSize(result)) return originalPredicate;
+                else return result;
+            }
+            else {
+                // 2023-03-16(Thu) SoheeJung
+                // kill zombie eusolver process
+                String killComment = ("killall python3.6");
+                Process p = Runtime.getRuntime().exec(killComment.split(" "));
+                p.waitFor();
+                System.out.println("Timeout occurred !!\n");
+                return originalPredicate;
+            }
             
             // 2023-03-31(Fri) SoheeJung
             // No-timeout eusolver execution
-            BufferedReader stdOut = new BufferedReader(new InputStreamReader(process.getInputStream()));
-            while((str = stdOut.readLine()) != null) {
-                System.out.println(str);
-                if(!str.contains("simplify")) {
-                    result = str.trim();
-                    // Last parenthesis elimination
-                    result = result.substring(0, result.length() - 1);
-                }
-            }
-            System.out.println("**********    Eusolver Finish    **********\n");
-            return result;
+            // BufferedReader stdOut = new BufferedReader(new InputStreamReader(process.getInputStream()));
+            // while((str = stdOut.readLine()) != null) {
+            //     System.out.println(str);
+            //     writer.println(str);
+            //     if(!str.contains("simplify")) {
+            //         result = str.trim();
+            //         // Last parenthesis elimination
+            //         result = result.substring(0, result.length() - 1);
+            //     }
+            // }
+            // System.out.println("**********    Eusolver Finish    **********\n");
+            // writer.println("**********    Eusolver Finish    **********\n");
+            // return result;
         } catch (IOException e) {
             e.printStackTrace();
         }
+
         return null;
     }
 
@@ -248,15 +261,32 @@ public class SpecGenerator {
 		return String.format("Total Conversion Time : %d days, %d hours, %d minutes, %d seconds%n", elapsedDays, elapsedHours, elapsedMinutes, elapsedSeconds);
     }
 
+    /**
+     * @date 2023-04-13(Thu)
+     * @author SoheeJung
+     * @param predicate
+     * @return
+     * predicate size count using and / or operator
+     */
+    public static Integer getPredicateSize(String predicate) {
+        System.out.println(predicate);
+        int andCount = predicate.length() - predicate.replace("and", "").length();
+        andCount = andCount / 3;
+        int orCount = predicate.length() - predicate.replace("or", "").length();
+        orCount = orCount / 2;
+        System.out.println(andCount + orCount + 1);
+        return andCount + orCount + 1;
+    }
+
     // main
     public static void main(String[] args) throws IOException, InterruptedException {
         // 2023-03-31(Fri) SoheeJung
         // experiment line addition (input from file / output to file)
-        BufferedReader reader = new BufferedReader(new FileReader(("./experiment/copy.txt")));
-        PrintWriter writer = new PrintWriter(new FileWriter("./experiment/predicate_triangle_output.txt"));
+        BufferedReader reader = new BufferedReader(new FileReader(("/home/jungsohee/ActiveLearning/PredicateSimplication/experiment/input/copy.txt")));
+        PrintWriter writer = new PrintWriter(new FileWriter("/home/jungsohee/ActiveLearning/PredicateSimplication/experiment/realFixedFinalOutput_continue.txt"));
 
         String str;
-        Integer index = 19;
+        Integer index = 24;
         while((str = reader.readLine()) != null) {
             // 2023-03-09(Thu) SoheeJung
             // Time Checking (start time)
@@ -265,8 +295,9 @@ public class SpecGenerator {
             // Get Input String
             String input = str;
             writer.println(String.valueOf(index++) + ".");
-            writer.println("[original predicate]");
+            writer.println("[Original predicate]");
             writer.println(input);
+            writer.println("\n[Original predicate size] " + getPredicateSize(input));
 
             // Make instance OR object
             SpecGenerator spec = new SpecGenerator(input);
@@ -291,7 +322,7 @@ public class SpecGenerator {
                     ArrayList<String> varlist = spec.collectAllvarFromAndNode(unitPredicates);
                     // make queue list (from variable information)
                     ArrayList<Queue<String>> queuelist = spec.makeQueueList(varlist.size());
-                    spec.insertQueueElement(unitPredicates, queuelist, varlist);
+                    spec.insertQueueElement(unitPredicates, queuelist, varlist, pred.getVariables());
                     // run EUsolver
                     for(int i = 0; i < queuelist.size(); i++) {
                         // if eucheck is false, then there is only one predicate.
@@ -299,14 +330,18 @@ public class SpecGenerator {
                         boolean eucheck = false;
 
                         while(true) {
+                            // 2023-04-14(Fri) SoheeJung
+                            // if queue is empty, then break
+                            if(queuelist.get(i).isEmpty()) break;
                             if(queuelist.get(i).size() == 1) {
                                 if(eucheck == false) {
                                     // run EUsolver first, and then get string from final string, and then add final result list
                                     // make spec file (.sl file)
-                                    spec.makeSpecFile("./output.sl", queuelist.get(i).poll(), pred.getVariables());
+                                    String prefixstr = queuelist.get(i).poll();
+                                    spec.makeSpecFile("./output.sl", prefixstr, pred.getVariables());
         
                                     // eusolver execution
-                                    String eusolver_result = spec.eusolverConnector("./output.sl");
+                                    String eusolver_result = spec.eusolverConnector("./output.sl", prefixstr);
                                     result.add(eusolver_result);
                                 } else {
                                     result.add(queuelist.get(i).poll());
@@ -321,7 +356,7 @@ public class SpecGenerator {
                                 spec.makeSpecFile("./output.sl", inputEusolver, pred.getVariables());
     
                                 // eusolver execution
-                                String eusolver_result = spec.eusolverConnector("./output.sl");
+                                String eusolver_result = spec.eusolverConnector("./output.sl", inputEusolver);
                                 queuelist.get(i).add(eusolver_result);
                             }
                         }
@@ -354,18 +389,22 @@ public class SpecGenerator {
                     ArrayList<String> varlist = spec.collectAllvarFromAndNode(unitPredicates);
                     // make queue list (from variable information)
                     ArrayList<Queue<String>> queuelist = spec.makeQueueList(varlist.size());
-                    spec.insertQueueElement(unitPredicates, queuelist, varlist);
+                    spec.insertQueueElement(unitPredicates, queuelist, varlist, pred.getVariables());
 
                     // run EUsolver
                     for(int i = 0; i < queuelist.size(); i++) {
                         while(true) {
+                            // 2023-04-14(Fri) SoheeJung
+                            // if queue is empty, then break
+                            if(queuelist.get(i).isEmpty()) break;
                             if(queuelist.get(i).size() == 1) {
                                 // run EUsolver first, and then get string from final string, and then add final result list
                                 // make spec file (.sl file)
-                                spec.makeSpecFile("./output.sl", queuelist.get(i).poll(), pred.getVariables());
+                                String prefixstr = queuelist.get(i).poll();
+                                spec.makeSpecFile("./output.sl", prefixstr, pred.getVariables());
     
                                 // eusolver execution
-                                String eusolver_result = spec.eusolverConnector("./output.sl");
+                                String eusolver_result = spec.eusolverConnector("./output.sl", prefixstr);
                                 result.add(eusolver_result);
                                 break;
                             } else {
@@ -376,7 +415,7 @@ public class SpecGenerator {
                                 spec.makeSpecFile("./output.sl", inputEusolver, pred.getVariables());
     
                                 // eusolver execution
-                                String eusolver_result = spec.eusolverConnector("./output.sl");
+                                String eusolver_result = spec.eusolverConnector("./output.sl", inputEusolver);
                                 queuelist.get(i).add(eusolver_result);
                             }
                         }
@@ -416,6 +455,7 @@ public class SpecGenerator {
             writer.println("\n[Final output]");
             System.out.println("Final result : " + pred.printPrefix(predElement) + "\n");
             writer.println(pred.printPrefix(predElement));
+            writer.println("\n[Final predicate size] " + getPredicateSize(pred.printPrefix(predElement)));
 
             long endTime = System.currentTimeMillis();
             
@@ -543,12 +583,23 @@ public class SpecGenerator {
      * @param varlist
      * if the variable is same, then save them same queue.
      * if the variable is different, then save them defferent queue.
+     * @throws IOException
+     * @throws InterruptedException
      */
-    public void insertQueueElement(ArrayList<ArrayList<String>> list, ArrayList<Queue<String>> queuelist, ArrayList<String> varlist) {
+    public void insertQueueElement(ArrayList<ArrayList<String>> list, ArrayList<Queue<String>> queuelist, ArrayList<String> varlist, ArrayList<Variable> variables) throws IOException, InterruptedException {
         for(int i = 0; i < list.size(); i++) {
+            boolean duplicateCheck = false;
             for(int j = 0; j < varlist.size(); j++) {
-                if(list.get(i).get(list.get(i).size() - 1).contains(varlist.get(j))) {
-                    queuelist.get(j).add(list.get(i).get(list.get(i).size() - 1));
+                if((list.get(i).get(list.get(i).size() - 1).contains(varlist.get(j))) && duplicateCheck == false) {
+                    // 2023-04-13(Thu) SoheeJung
+                    // if insert predicate to queue, simplify predicate first (because we need to remove 'not')
+                    makeSpecFile("./output.sl", list.get(i).get(list.get(i).size() - 1), variables);
+                    String eusolver_result = eusolverConnector("./output.sl", list.get(i).get(list.get(i).size() - 1));
+                    queuelist.get(j).add(eusolver_result);
+                    // 2023-04-14(Fri) SoheeJung
+                    // if the predicate compare two variables, then this predicate contains one variable's queue. 
+                    // change duplicateCheck true -> then same predicate is not checking another variable.
+                    duplicateCheck = true;
                 }
             }
         }
