@@ -1,6 +1,6 @@
 (set-logic LIA)
 
-(synth-fun simplify ( (rt_input.n2 Int) (rt_input.n1 Int) ) Bool
+(synth-fun simplify ( (a Int) (b Int) (c Int) ) Bool
 	((Start Bool (
 		true
 		false
@@ -14,8 +14,9 @@
 		(<= StartInt StartInt)
 	))
 	(StartInt Int (
-		rt_input.n2
-		rt_input.n1
+		a
+		b
+		c
 		-1
 		0
 		1
@@ -33,11 +34,12 @@
 	)
 )
 
-(declare-var rt_input.n2 Int)
-(declare-var rt_input.n1 Int)
+(declare-var a Int)
+(declare-var b Int)
+(declare-var c Int)
 
-(constraint (= (simplify rt_input.n2 rt_input.n1 )
-	(= 6 rt_input.n1)
+(constraint (= (simplify a b c)
+	(and (and (> c 2) (> c a)) (and (> c 5) (> 9 c)))
 	))
 
 (check-synth)

@@ -282,11 +282,11 @@ public class SpecGenerator {
     public static void main(String[] args) throws IOException, InterruptedException {
         // 2023-03-31(Fri) SoheeJung
         // experiment line addition (input from file / output to file)
-        BufferedReader reader = new BufferedReader(new FileReader(("/home/jungsohee/ActiveLearning/PredicateSimplication/experiment/input/copy.txt")));
-        PrintWriter writer = new PrintWriter(new FileWriter("/home/jungsohee/ActiveLearning/PredicateSimplication/experiment/realFixedFinalOutput_continue.txt"));
+        BufferedReader reader = new BufferedReader(new FileReader(("/home/jungsohee/ActiveLearning/PredicateSimplication/test/gcd/input.txt")));
+        PrintWriter writer = new PrintWriter(new FileWriter("/home/jungsohee/ActiveLearning/PredicateSimplication/test/gcd/result.txt"));
 
         String str;
-        Integer index = 24;
+        Integer index = 1;
         while((str = reader.readLine()) != null) {
             // 2023-03-09(Thu) SoheeJung
             // Time Checking (start time)
