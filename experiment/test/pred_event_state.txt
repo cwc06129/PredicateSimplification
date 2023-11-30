@@ -1,0 +1,124 @@
+ingoing state : 1
+outgoing state : 2
+event : start
+
+ingoing state : 2
+outgoing state : 2
+event : 1
+
+ingoing state : 2
+outgoing state : 3
+predicate : (((2 >= rt_input.n1) and (5 > rt_input.n2) and (4 > rt_input.n2) and (2 >= rt_input.n2)) or ((2 >= rt_input.n1) and (5 > rt_input.n2) and !(4 > rt_input.n2)) or (!(2 >= rt_input.n1) and (2 >= rt_input.n2) and (4 == rt_input.n1)))
+event : 2
+
+ingoing state : 2
+outgoing state : 4
+predicate : (!(5 > rt_input.n1) and !(5 > rt_input.n2))
+event : 5
+
+ingoing state : 2
+outgoing state : 5
+predicate : ((4 > rt_input.n1) and (4 > rt_input.n2) and !(2 >= rt_input.n1) and !(2 >= rt_input.n2))
+event : 3
+
+ingoing state : 2
+outgoing state : 6
+predicate : ((4 == rt_input.n1) and !(4 > rt_input.n2) and (5 > rt_input.n2))
+event : 4
+
+ingoing state : 3
+outgoing state : 5
+predicate : ((3 == rt_input.n1) and (3 >= rt_input.n2) and !(2 >= rt_input.n2))
+event : 3
+
+ingoing state : 3
+outgoing state : 2
+predicate : (((5 > rt_input.n2) and (5 == rt_input.n1)) or ((5 > rt_input.n2) and !(5 == rt_input.n1) and (3 == rt_input.n1) and !(3 == rt_input.n2)) or ((5 > rt_input.n2) and !(5 == rt_input.n1) and !(3 == rt_input.n1) and (3 == rt_input.n2)) or (!(5 > rt_input.n2) and (5 > rt_input.n1)))
+event : 1
+
+ingoing state : 3
+outgoing state : 3
+event : 2
+
+ingoing state : 3
+outgoing state : 6
+predicate : ((5 > rt_input.n2) and !(3 >= rt_input.n2) and (5 > rt_input.n1) and !(3 >= rt_input.n1))
+event : 4
+
+ingoing state : 3
+outgoing state : 4
+predicate : (!(5 > rt_input.n2) and !(5 > rt_input.n1))
+event : 5
+
+ingoing state : 4
+outgoing state : 2
+predicate : (((4 >= rt_input.n1) and (4 >= rt_input.n2) and (4 == rt_input.n1) and (4 > rt_input.n2) and !(2 >= rt_input.n2)) or ((4 >= rt_input.n1) and (4 >= rt_input.n2) and !(4 == rt_input.n1) and (2 >= rt_input.n2) and !(2 >= rt_input.n1)) or ((4 >= rt_input.n1) and (4 >= rt_input.n2) and !(4 == rt_input.n1) and !(2 >= rt_input.n2) and (4 > rt_input.n2) and (2 >= rt_input.n1)) or ((4 >= rt_input.n1) and (4 >= rt_input.n2) and !(4 == rt_input.n1) and !(2 >= rt_input.n2) and !(4 > rt_input.n2) and !(2 >= rt_input.n1)) or ((4 >= rt_input.n1) and !(4 >= rt_input.n2)) or (!(4 >= rt_input.n1) and (4 >= rt_input.n2)))
+event : 1
+
+ingoing state : 4
+outgoing state : 6
+predicate : ((4 == rt_input.n1) and !(4 > rt_input.n2) and (4 >= rt_input.n2))
+event : 4
+
+ingoing state : 4
+outgoing state : 3
+predicate : (((2 >= rt_input.n1) and (4 >= rt_input.n2) and (4 > rt_input.n2) and (2 >= rt_input.n2)) or ((2 >= rt_input.n1) and (4 >= rt_input.n2) and !(4 > rt_input.n2)) or (!(2 >= rt_input.n1) and (2 >= rt_input.n2) and (4 == rt_input.n1)))
+event : 2
+
+ingoing state : 4
+outgoing state : 5
+predicate : ((4 > rt_input.n1) and !(2 >= rt_input.n2) and !(2 >= rt_input.n1) and (4 > rt_input.n2))
+event : 3
+
+ingoing state : 4
+outgoing state : 4
+event : 5
+
+ingoing state : 5
+outgoing state : 2
+predicate : (((4 >= rt_input.n2) and (4 >= rt_input.n1) and (2 >= rt_input.n2) and !(4 == rt_input.n1) and !(2 >= rt_input.n1)) or ((4 >= rt_input.n2) and (4 >= rt_input.n1) and !(2 >= rt_input.n2) and (4 > rt_input.n1) and (4 > rt_input.n2) and (2 >= rt_input.n1)) or ((4 >= rt_input.n2) and (4 >= rt_input.n1) and !(2 >= rt_input.n2) and (4 > rt_input.n1) and !(4 > rt_input.n2) and !(2 >= rt_input.n1)) or ((4 >= rt_input.n2) and (4 >= rt_input.n1) and !(2 >= rt_input.n2) and !(4 > rt_input.n1) and (4 > rt_input.n2)) or ((4 >= rt_input.n2) and !(4 >= rt_input.n1)) or (!(4 >= rt_input.n2) and (4 >= rt_input.n1)))
+event : 1
+
+ingoing state : 5
+outgoing state : 4
+predicate : (!(4 >= rt_input.n2) and !(4 >= rt_input.n1))
+event : 5
+
+ingoing state : 5
+outgoing state : 5
+event : 3
+
+ingoing state : 5
+outgoing state : 6
+predicate : ((4 == rt_input.n1) and !(4 > rt_input.n2) and (4 >= rt_input.n2))
+event : 4
+
+ingoing state : 5
+outgoing state : 3
+predicate : (((2 >= rt_input.n1) and (4 >= rt_input.n2) and (4 > rt_input.n2) and (2 >= rt_input.n2)) or ((2 >= rt_input.n1) and (4 >= rt_input.n2) and !(4 > rt_input.n2)) or (!(2 >= rt_input.n1) and (2 >= rt_input.n2) and (4 == rt_input.n1)))
+event : 2
+
+ingoing state : 6
+outgoing state : 4
+predicate : (!(5 > rt_input.n1) and !(5 > rt_input.n2))
+event : 5
+
+ingoing state : 6
+outgoing state : 2
+predicate : (((5 > rt_input.n1) and (5 > rt_input.n2) and (2 >= rt_input.n2) and !(2 >= rt_input.n1) and !(4 == rt_input.n1)) or ((5 > rt_input.n1) and (5 > rt_input.n2) and !(2 >= rt_input.n2) and (4 > rt_input.n2) and (4 == rt_input.n1)) or ((5 > rt_input.n1) and (5 > rt_input.n2) and !(2 >= rt_input.n2) and (4 > rt_input.n2) and !(4 == rt_input.n1) and (2 >= rt_input.n1)) or ((5 > rt_input.n1) and (5 > rt_input.n2) and !(2 >= rt_input.n2) and !(4 > rt_input.n2) and !(4 == rt_input.n1) and !(2 >= rt_input.n1)) or ((5 > rt_input.n1) and !(5 > rt_input.n2)) or (!(5 > rt_input.n1) and (5 > rt_input.n2)))
+event : 1
+
+ingoing state : 6
+outgoing state : 5
+predicate : ((4 > rt_input.n1) and !(2 >= rt_input.n1) and (4 > rt_input.n2) and !(2 >= rt_input.n2))
+event : 3
+
+ingoing state : 6
+outgoing state : 3
+predicate : (((2 >= rt_input.n2) and (4 == rt_input.n1)) or ((2 >= rt_input.n2) and !(4 == rt_input.n1) and (2 >= rt_input.n1)) or (!(2 >= rt_input.n2) and (2 >= rt_input.n1) and (5 > rt_input.n2) and !(4 > rt_input.n2)))
+event : 2
+
+ingoing state : 6
+outgoing state : 6
+event : 4
+

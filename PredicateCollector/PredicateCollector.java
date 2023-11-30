@@ -15,8 +15,10 @@ import java.util.regex.Pattern;
  * extrace all the predicates from model.txt's final model part
  */
 public class PredicateCollector {
+    static String filepath = "/home/jungsohee/ActiveLearning/PredicateSimplication/experiment/test/";
+
     public static void main(String[] args) throws IOException {
-        BufferedReader reader = new BufferedReader(new FileReader(("/home/jungsohee/ActiveLearning/PredicateSimplication/experiment/test/input.txt")));
+        BufferedReader reader = new BufferedReader(new FileReader((filepath + "input.txt")));
         
         String str = reader.readLine();
         // split [ or ] part
@@ -34,9 +36,9 @@ public class PredicateCollector {
      * @name predicateEvent
      */
     public static void predicateEvent(String [] strArr) throws IOException {
-        File file1 = new File("/home/jungsohee/ActiveLearning/PredicateSimplication/experiment/test/pred_event.txt");
+        File file1 = new File(filepath + "pred_event.txt");
         PrintWriter writer1 = new PrintWriter(new FileWriter(file1));
-        File file2 = new File("/home/jungsohee/ActiveLearning/PredicateSimplication/experiment/test/onlyPred.txt");
+        File file2 = new File(filepath + "onlyPred.txt");
         PrintWriter writer2 = new PrintWriter(new FileWriter(file2));
 
         ArrayList<String> predStrArr = new ArrayList<>();
@@ -75,7 +77,7 @@ public class PredicateCollector {
      * @name predicateHaveState
      */
     public static void predicateHaveState(String [] strArr) throws IOException {
-        File file = new File("/home/jungsohee/ActiveLearning/PredicateSimplication/experiment/test/pred_event_state.txt");
+        File file = new File(filepath + "pred_event_state.txt");
         PrintWriter writer = new PrintWriter(new FileWriter(file));
         
         for(String s : strArr) {
