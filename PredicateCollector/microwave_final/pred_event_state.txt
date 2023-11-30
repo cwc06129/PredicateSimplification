@@ -1,0 +1,113 @@
+ingoing state : 1
+outgoing state : 2
+event : start
+
+ingoing state : 2
+outgoing state : 2
+event : Waiting
+
+ingoing state : 2
+outgoing state : 3
+predicate : (rt_input.event == half)
+event : HalfPower
+
+ingoing state : 2
+outgoing state : 5
+predicate : (rt_input.event == full)
+event : FullPower
+
+ingoing state : 3
+outgoing state : 3
+event : HalfPower
+
+ingoing state : 3
+outgoing state : 4
+predicate : (!(rt_input.event == StartPress) and !(rt_input.event == None) and !(rt_input.event == closeDoor) and !(rt_input.event == openDoor) and !(rt_input.event == cancel) and !(rt_input.event == full) and !(rt_input.event == half))
+event : SetTime
+
+ingoing state : 3
+outgoing state : 5
+predicate : (rt_input.event == full)
+event : FullPower
+
+ingoing state : 4
+outgoing state : 11
+event : SetTime
+
+ingoing state : 4
+outgoing state : 6
+predicate : (rt_input.event == closeDoor)
+event : Enabled
+
+ingoing state : 5
+outgoing state : 3
+predicate : (rt_input.event == half)
+event : HalfPower
+
+ingoing state : 5
+outgoing state : 12
+predicate : (!(rt_input.event == half) and !(rt_input.event == openDoor) and !(rt_input.event == StartPress) and !(rt_input.event == None) and !(rt_input.event == cancel) and !(rt_input.event == full) and !(rt_input.event == closeDoor))
+event : SetTime
+
+ingoing state : 5
+outgoing state : 7
+event : FullPower
+
+ingoing state : 6
+outgoing state : 9
+event : Enabled
+
+ingoing state : 7
+outgoing state : 12
+predicate : (!(rt_input.event == half) and !(rt_input.event == openDoor) and !(rt_input.event == StartPress) and !(rt_input.event == None) and !(rt_input.event == cancel) and !(rt_input.event == full) and !(rt_input.event == closeDoor))
+event : SetTime
+
+ingoing state : 7
+outgoing state : 7
+event : FullPower
+
+ingoing state : 8
+outgoing state : 10
+event : Disabled
+
+ingoing state : 9
+outgoing state : 9
+event : Enabled
+
+ingoing state : 9
+outgoing state : 2
+predicate : (rt_input.event == StartPress)
+event : Waiting
+
+ingoing state : 10
+outgoing state : 10
+event : Disabled
+
+ingoing state : 10
+outgoing state : 6
+predicate : (rt_input.event == closeDoor)
+event : Enabled
+
+ingoing state : 11
+outgoing state : 11
+event : SetTime
+
+ingoing state : 11
+outgoing state : 8
+predicate : (rt_input.event == openDoor)
+event : Disabled
+
+ingoing state : 12
+outgoing state : 11
+event : SetTime
+
+ingoing state : 12
+outgoing state : 8
+predicate : (rt_input.event == openDoor)
+event : Disabled
+
+ingoing state : 12
+outgoing state : 6
+predicate : (rt_input.event == closeDoor)
+event : Enabled
+

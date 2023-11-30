@@ -2,7 +2,7 @@
  * 2023-02-24(Fri) SoheeJung
  * Filename : Predicate.java
  */
-package SpecGenerator;
+// package SpecGenerator;
 
 import java.util.ArrayList;
 import java.util.Arrays;

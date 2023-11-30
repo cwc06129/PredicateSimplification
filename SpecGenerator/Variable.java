@@ -2,7 +2,7 @@
  * 2023-02-28(Tue) SoheeJung
  * Filename : Variable.java
  */
-package SpecGenerator;
+// package SpecGenerator;
 
 public class Variable {
     // attribute

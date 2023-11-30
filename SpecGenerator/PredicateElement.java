@@ -2,7 +2,7 @@
  * 2023-02-24(Fri) SoheeJung
  * Filename : PredicateElement.java
  */
-package SpecGenerator;
+// package SpecGenerator;
 
 public class PredicateElement {
     // Original attribute

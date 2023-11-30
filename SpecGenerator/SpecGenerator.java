@@ -2,10 +2,9 @@
  * 2023-02-24(Fri) SoheeJung
  * Filename : SpecGenerator.java
  */
-package SpecGenerator;
+// package SpecGenerator;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -16,7 +15,10 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class SpecGenerator {
     // attribute
@@ -282,8 +284,8 @@ public class SpecGenerator {
     public static void main(String[] args) throws IOException, InterruptedException {
         // 2023-03-31(Fri) SoheeJung
         // experiment line addition (input from file / output to file)
-        BufferedReader reader = new BufferedReader(new FileReader(("/home/jungsohee/ActiveLearning/PredicateSimplication/test/gcd/input.txt")));
-        PrintWriter writer = new PrintWriter(new FileWriter("/home/jungsohee/ActiveLearning/PredicateSimplication/test/gcd/result.txt"));
+        BufferedReader reader = new BufferedReader(new FileReader(("/home/jungsohee/ActiveLearning/PredicateSimplication/experiment/test/onlyPred.txt")));
+        PrintWriter writer = new PrintWriter(new FileWriter("/home/jungsohee/ActiveLearning/PredicateSimplication/experiment/test/result.txt"));
 
         String str;
         Integer index = 1;
@@ -291,6 +293,24 @@ public class SpecGenerator {
             // 2023-03-09(Thu) SoheeJung
             // Time Checking (start time)
             long startTime = System.currentTimeMillis();
+
+            // 2023-11-30(Thu) SoheeJung
+            // String replace part addition
+            // [exmaple] (rt_state.a - rt_state.b <= 1) -> ((rt_state.a - rt_state.b)) <= 1)
+            ArrayList<String> lineList = new ArrayList<String>();
+            Pattern p = Pattern.compile("\\w+.\\w+ - \\w+.\\w+");
+            Matcher m = p.matcher(str);
+            
+            while(m.find()) {
+                lineList.add(m.group(0));
+            }
+
+            Set<String> finalLineList = Set.copyOf(lineList); 
+
+            for(String replaceString : finalLineList) {
+                str = str.replace(replaceString, "(" + replaceString + ")");
+            }
+            /* string replace part finish */
 
             // Get Input String
             String input = str;

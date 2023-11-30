@@ -1,0 +1,20 @@
+((rt_input.triangleb >= rt_input.trianglec) and !(rt_input.triangleb > rt_input.trianglec) and !(rt_input.trianglea == rt_input.triangleb)): 3
+((rt_input.trianglea >= rt_input.trianglec) and !(rt_input.trianglea > rt_input.trianglec) and !(rt_input.trianglea == rt_input.triangleb)): 2
+(((rt_input.trianglea == rt_input.triangleb) and (rt_input.trianglea >= rt_input.trianglec) and (rt_input.trianglea > rt_input.trianglec)) or ((rt_input.trianglea == rt_input.triangleb) and !(rt_input.trianglea >= rt_input.trianglec))): 1
+((rt_input.trianglea == rt_input.triangleb) and (rt_input.trianglea >= rt_input.trianglec) and !(rt_input.trianglea > rt_input.trianglec)): 6
+(!(rt_input.trianglea > rt_input.trianglec) and (rt_input.trianglea >= rt_input.trianglec) and !(rt_input.trianglea == rt_input.triangleb)): 2
+((!(rt_input.trianglea == rt_input.trianglec) and !(rt_input.trianglea == rt_input.triangleb) and (rt_input.triangleb > rt_input.trianglec)) or (!(rt_input.trianglea == rt_input.trianglec) and !(rt_input.trianglea == rt_input.triangleb) and !(rt_input.triangleb > rt_input.trianglec) and !(rt_input.triangleb >= rt_input.trianglec))): 0
+(!(rt_input.triangleb > rt_input.trianglec) and (rt_input.triangleb >= rt_input.trianglec) and !(rt_input.trianglea == rt_input.trianglec)): 3
+((rt_input.trianglea == rt_input.triangleb) and !(rt_input.trianglea > rt_input.trianglec) and (rt_input.trianglea >= rt_input.trianglec)): 6
+((!(rt_input.trianglea == rt_input.triangleb) and !(rt_input.trianglea == rt_input.trianglec) and (rt_input.triangleb >= rt_input.trianglec) and (rt_input.triangleb > rt_input.trianglec)) or (!(rt_input.trianglea == rt_input.triangleb) and !(rt_input.trianglea == rt_input.trianglec) and !(rt_input.triangleb >= rt_input.trianglec))): 0
+(!(rt_input.trianglea > rt_input.trianglec) and (rt_input.trianglea >= rt_input.trianglec) and !(rt_input.trianglea == rt_input.triangleb)): 2
+(((rt_input.trianglea == rt_input.triangleb) and (rt_input.trianglea > rt_input.trianglec)) or ((rt_input.trianglea == rt_input.triangleb) and !(rt_input.trianglea > rt_input.trianglec) and !(rt_input.trianglea >= rt_input.trianglec))): 1
+(!(rt_input.triangleb > rt_input.trianglec) and (rt_input.triangleb >= rt_input.trianglec) and !(rt_input.trianglea == rt_input.triangleb)): 3
+((rt_input.triangleb >= rt_input.trianglec) and !(rt_input.triangleb > rt_input.trianglec) and !(rt_input.trianglea == rt_input.triangleb)): 3
+((!(rt_input.trianglea == rt_input.triangleb) and !(rt_input.trianglea == rt_input.trianglec) and (rt_input.triangleb >= rt_input.trianglec) and (rt_input.triangleb > rt_input.trianglec)) or (!(rt_input.trianglea == rt_input.triangleb) and !(rt_input.trianglea == rt_input.trianglec) and !(rt_input.triangleb >= rt_input.trianglec))): 0
+(((rt_input.trianglea == rt_input.triangleb) and (rt_input.trianglea >= rt_input.trianglec) and (rt_input.trianglea > rt_input.trianglec)) or ((rt_input.trianglea == rt_input.triangleb) and !(rt_input.trianglea >= rt_input.trianglec))): 1
+((rt_input.trianglea == rt_input.triangleb) and (rt_input.trianglea >= rt_input.trianglec) and !(rt_input.trianglea > rt_input.trianglec)): 6
+((rt_input.trianglea >= rt_input.trianglec) and !(rt_input.trianglea > rt_input.trianglec) and !(rt_input.trianglea == rt_input.triangleb)): 2
+((!(rt_input.trianglea == rt_input.triangleb) and !(rt_input.trianglea == rt_input.trianglec) and (rt_input.triangleb >= rt_input.trianglec) and (rt_input.triangleb > rt_input.trianglec)) or (!(rt_input.trianglea == rt_input.triangleb) and !(rt_input.trianglea == rt_input.trianglec) and !(rt_input.triangleb >= rt_input.trianglec))): 0
+(((rt_input.trianglea == rt_input.triangleb) and (rt_input.trianglea >= rt_input.trianglec) and (rt_input.trianglea > rt_input.trianglec)) or ((rt_input.trianglea == rt_input.triangleb) and !(rt_input.trianglea >= rt_input.trianglec))): 1
+((rt_input.trianglea == rt_input.triangleb) and (rt_input.trianglea >= rt_input.trianglec) and !(rt_input.trianglea > rt_input.trianglec)): 6

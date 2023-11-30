@@ -1,0 +1,300 @@
+1.
+[Original predicate]
+((rt_input.trianglea >= rt_input.trianglec) and !(rt_input.trianglea > rt_input.trianglec) and !(rt_input.trianglea == rt_input.triangleb))
+
+[Original predicate size] 3
+
+[Final output]
+(and (not (= rt_input.trianglea rt_input.triangleb)) (= rt_input.trianglec rt_input.trianglea)) 
+
+[Final predicate size] 2
+
+[Total time]
+Total Conversion Time : 0 days, 0 hours, 0 minutes, 1 seconds
+
+
+2.
+[Original predicate]
+((!(rt_input.trianglea == rt_input.triangleb) and !(rt_input.trianglea == rt_input.trianglec) and (rt_input.triangleb >= rt_input.trianglec) and (rt_input.triangleb > rt_input.trianglec)) or (!(rt_input.trianglea == rt_input.triangleb) and !(rt_input.trianglea == rt_input.trianglec) and !(rt_input.triangleb >= rt_input.trianglec)))
+
+[Original predicate size] 7
+
+[Final output]
+( or (and (and (not (= rt_input.trianglea rt_input.triangleb)) (> rt_input.triangleb rt_input.trianglec)) (not (= rt_input.trianglec rt_input.trianglea))) (and ( and (not (= rt_input.trianglea rt_input.triangleb)) (> rt_input.trianglec rt_input.triangleb)) (not (= rt_input.trianglec rt_input.trianglea))) ) 
+
+[Final predicate size] 6
+
+[Total time]
+Total Conversion Time : 0 days, 0 hours, 0 minutes, 42 seconds
+
+
+3.
+[Original predicate]
+(((rt_input.trianglea == rt_input.triangleb) and (rt_input.trianglea >= rt_input.trianglec) and (rt_input.trianglea > rt_input.trianglec)) or ((rt_input.trianglea == rt_input.triangleb) and !(rt_input.trianglea >= rt_input.trianglec)))
+
+[Original predicate size] 5
+
+[Final output]
+( or (and (= rt_input.trianglea rt_input.triangleb) (> rt_input.trianglea rt_input.trianglec)) (and (= rt_input.trianglea rt_input.triangleb) (> rt_input.trianglec rt_input.trianglea)) ) 
+
+[Final predicate size] 4
+
+[Total time]
+Total Conversion Time : 0 days, 0 hours, 0 minutes, 2 seconds
+
+
+4.
+[Original predicate]
+((rt_input.trianglea == rt_input.triangleb) and (rt_input.trianglea >= rt_input.trianglec) and !(rt_input.trianglea > rt_input.trianglec))
+
+[Original predicate size] 3
+
+[Final output]
+(and (= rt_input.trianglea rt_input.triangleb) (= rt_input.trianglec rt_input.trianglea)) 
+
+[Final predicate size] 2
+
+[Total time]
+Total Conversion Time : 0 days, 0 hours, 0 minutes, 1 seconds
+
+
+5.
+[Original predicate]
+((rt_input.triangleb >= rt_input.trianglec) and !(rt_input.triangleb > rt_input.trianglec) and !(rt_input.trianglea == rt_input.triangleb))
+
+[Original predicate size] 3
+
+[Final output]
+( and (not (= rt_input.trianglea rt_input.triangleb)) (= rt_input.trianglec rt_input.triangleb)) 
+
+[Final predicate size] 2
+
+[Total time]
+Total Conversion Time : 0 days, 0 hours, 0 minutes, 21 seconds
+
+
+6.
+[Original predicate]
+((!(rt_input.trianglea == rt_input.triangleb) and !(rt_input.trianglea == rt_input.trianglec) and (rt_input.triangleb >= rt_input.trianglec) and (rt_input.triangleb > rt_input.trianglec)) or (!(rt_input.trianglea == rt_input.triangleb) and !(rt_input.trianglea == rt_input.trianglec) and !(rt_input.triangleb >= rt_input.trianglec)))
+
+[Original predicate size] 7
+
+[Final output]
+( or (and (and (not (= rt_input.trianglea rt_input.triangleb)) (> rt_input.triangleb rt_input.trianglec)) (not (= rt_input.trianglec rt_input.trianglea))) (and ( and (not (= rt_input.trianglea rt_input.triangleb)) (> rt_input.trianglec rt_input.triangleb)) (not (= rt_input.trianglec rt_input.trianglea))) ) 
+
+[Final predicate size] 6
+
+[Total time]
+Total Conversion Time : 0 days, 0 hours, 0 minutes, 43 seconds
+
+
+7.
+[Original predicate]
+(((rt_input.trianglea == rt_input.triangleb) and (rt_input.trianglea >= rt_input.trianglec) and (rt_input.trianglea > rt_input.trianglec)) or ((rt_input.trianglea == rt_input.triangleb) and !(rt_input.trianglea >= rt_input.trianglec)))
+
+[Original predicate size] 5
+
+[Final output]
+( or (and (= rt_input.trianglea rt_input.triangleb) (> rt_input.trianglea rt_input.trianglec)) (and (= rt_input.trianglea rt_input.triangleb) (> rt_input.trianglec rt_input.trianglea)) ) 
+
+[Final predicate size] 4
+
+[Total time]
+Total Conversion Time : 0 days, 0 hours, 0 minutes, 2 seconds
+
+
+8.
+[Original predicate]
+((rt_input.trianglea == rt_input.triangleb) and (rt_input.trianglea >= rt_input.trianglec) and !(rt_input.trianglea > rt_input.trianglec))
+
+[Original predicate size] 3
+
+[Final output]
+(and (= rt_input.trianglea rt_input.triangleb) (= rt_input.trianglec rt_input.trianglea)) 
+
+[Final predicate size] 2
+
+[Total time]
+Total Conversion Time : 0 days, 0 hours, 0 minutes, 1 seconds
+
+
+9.
+[Original predicate]
+(!(rt_input.trianglea > rt_input.trianglec) and (rt_input.trianglea >= rt_input.trianglec) and !(rt_input.trianglea == rt_input.triangleb))
+
+[Original predicate size] 3
+
+[Final output]
+(and (not (= rt_input.trianglea rt_input.triangleb)) (= rt_input.trianglec rt_input.trianglea)) 
+
+[Final predicate size] 2
+
+[Total time]
+Total Conversion Time : 0 days, 0 hours, 0 minutes, 1 seconds
+
+
+10.
+[Original predicate]
+((!(rt_input.trianglea == rt_input.trianglec) and !(rt_input.trianglea == rt_input.triangleb) and (rt_input.triangleb > rt_input.trianglec)) or (!(rt_input.trianglea == rt_input.trianglec) and !(rt_input.trianglea == rt_input.triangleb) and !(rt_input.triangleb > rt_input.trianglec) and !(rt_input.triangleb >= rt_input.trianglec)))
+
+[Original predicate size] 7
+
+[Final output]
+( or (and ( and (not (= rt_input.trianglea rt_input.triangleb)) (> rt_input.triangleb rt_input.trianglec)) (not (= rt_input.trianglec rt_input.trianglea))) (and (and (not (= rt_input.trianglea rt_input.triangleb)) (> rt_input.trianglec rt_input.triangleb)) (not (= rt_input.trianglec rt_input.trianglea))) ) 
+
+[Final predicate size] 6
+
+[Total time]
+Total Conversion Time : 0 days, 0 hours, 0 minutes, 44 seconds
+
+
+11.
+[Original predicate]
+(!(rt_input.triangleb > rt_input.trianglec) and (rt_input.triangleb >= rt_input.trianglec) and !(rt_input.trianglea == rt_input.trianglec))
+
+[Original predicate size] 3
+
+[Final output]
+(and (= rt_input.trianglec rt_input.triangleb) (not (= rt_input.trianglec rt_input.trianglea))) 
+
+[Final predicate size] 2
+
+[Total time]
+Total Conversion Time : 0 days, 0 hours, 0 minutes, 1 seconds
+
+
+12.
+[Original predicate]
+((rt_input.trianglea == rt_input.triangleb) and !(rt_input.trianglea > rt_input.trianglec) and (rt_input.trianglea >= rt_input.trianglec))
+
+[Original predicate size] 3
+
+[Final output]
+(and (= rt_input.trianglea rt_input.triangleb) (= rt_input.trianglec rt_input.trianglea)) 
+
+[Final predicate size] 2
+
+[Total time]
+Total Conversion Time : 0 days, 0 hours, 0 minutes, 1 seconds
+
+
+13.
+[Original predicate]
+(((3 == rt_input.trianglea) and (3 >= rt_input.trianglec) and !(2 >= rt_input.trianglec) and !(3 == rt_input.triangleb)) or (!(3 == rt_input.trianglea) and (9 > rt_input.triangleb) and (1 >= rt_input.trianglec) and (1 >= rt_input.trianglea) and !(1 >= rt_input.triangleb)) or (!(3 == rt_input.trianglea) and (9 > rt_input.triangleb) and !(1 >= rt_input.trianglec) and (6 > rt_input.triangleb) and !(1 >= rt_input.trianglea) and (3 >= rt_input.trianglec) and (2 == rt_input.trianglea) and (2 == rt_input.trianglec) and !(2 == rt_input.triangleb)) or (!(3 == rt_input.trianglea) and (9 > rt_input.triangleb) and !(1 >= rt_input.trianglec) and (6 > rt_input.triangleb) and !(1 >= rt_input.trianglea) and !(3 >= rt_input.trianglec) and !(3 >= rt_input.trianglea) and !(5 == rt_input.trianglea) and !(5 == rt_input.trianglec) and (5 > rt_input.triangleb) and (3 >= rt_input.triangleb) and (6 == rt_input.trianglea) and (6 >= rt_input.trianglec)) or (!(3 == rt_input.trianglea) and (9 > rt_input.triangleb) and !(1 >= rt_input.trianglec) and (6 > rt_input.triangleb) and !(1 >= rt_input.trianglea) and !(3 >= rt_input.trianglec) and !(3 >= rt_input.trianglea) and !(5 == rt_input.trianglea) and !(5 == rt_input.trianglec) and (5 > rt_input.triangleb) and (3 >= rt_input.triangleb) and !(6 == rt_input.trianglea) and (2 >= rt_input.triangleb) and (9 > rt_input.trianglea) and (5 > rt_input.trianglec)) or (!(3 == rt_input.trianglea) and (9 > rt_input.triangleb) and !(1 >= rt_input.trianglec) and (6 > rt_input.triangleb) and !(1 >= rt_input.trianglea) and !(3 >= rt_input.trianglec) and !(3 >= rt_input.trianglea) and !(5 == rt_input.trianglea) and !(5 == rt_input.trianglec) and (5 > rt_input.triangleb) and (3 >= rt_input.triangleb) and !(6 == rt_input.trianglea) and (2 >= rt_input.triangleb) and !(9 > rt_input.trianglea)) or (!(3 == rt_input.trianglea) and (9 > rt_input.triangleb) and !(1 >= rt_input.trianglec) and (6 > rt_input.triangleb) and !(1 >= rt_input.trianglea) and !(3 >= rt_input.trianglec) and !(3 >= rt_input.trianglea) and !(5 == rt_input.trianglea) and !(5 == rt_input.trianglec) and !(5 > rt_input.triangleb) and (9 > rt_input.trianglea) and (6 > rt_input.trianglec)) or (!(3 == rt_input.trianglea) and (9 > rt_input.triangleb) and !(1 >= rt_input.trianglec) and (6 > rt_input.triangleb) and !(1 >= rt_input.trianglea) and !(3 >= rt_input.trianglec) and !(3 >= rt_input.trianglea) and !(5 == rt_input.trianglea) and !(5 == rt_input.trianglec) and !(5 > rt_input.triangleb) and (9 > rt_input.trianglea) and !(6 > rt_input.trianglec) and !(6 >= rt_input.trianglea) and !(6 == rt_input.trianglec)) or (!(3 == rt_input.trianglea) and !(9 > rt_input.triangleb) and (5 == rt_input.trianglec)) or (!(3 == rt_input.trianglea) and !(9 > rt_input.triangleb) and !(5 == rt_input.trianglec) and (5 > rt_input.trianglea) and (2 >= rt_input.trianglec) and (2 == rt_input.trianglec) and (2 == rt_input.trianglea)) or (!(3 == rt_input.trianglea) and !(9 > rt_input.triangleb) and !(5 == rt_input.trianglec) and (5 > rt_input.trianglea) and (2 >= rt_input.trianglec) and !(2 == rt_input.trianglec) and !(2 == rt_input.trianglea)) or (!(3 == rt_input.trianglea) and !(9 > rt_input.triangleb) and !(5 == rt_input.trianglec) and (5 > rt_input.trianglea) and !(2 >= rt_input.trianglec) and !(2 >= rt_input.trianglea) and !(3 >= rt_input.trianglec)))
+
+[Original predicate size] 110
+
+[Final output]
+( or (and (not (= 3 rt_input.triangleb)) (and (= 3 rt_input.trianglea) (= 3 rt_input.trianglec))) ( or (and (and (> rt_input.triangleb 1) (> 9 rt_input.triangleb)) (and (> 2 rt_input.trianglea) (> 2 rt_input.trianglec))) ( or (and (and (not (= 2 rt_input.triangleb)) (> 6 rt_input.triangleb)) (and (= 2 rt_input.trianglea) (= 2 rt_input.trianglec))) ( or (and (> 4 rt_input.triangleb) (and (= 6 rt_input.trianglea) (or (= 6 rt_input.trianglec) (= 4 rt_input.trianglec)))) ( or (and (> 3 rt_input.triangleb) (and ( and (and (not (= 6 rt_input.trianglea)) (> 9 rt_input.trianglea)) (or (> rt_input.trianglea 5) (= 4 rt_input.trianglea))) (= 4 rt_input.trianglec))) ( or (and (> 3 rt_input.triangleb) (and (> rt_input.trianglea 8) (or (> rt_input.trianglec 5) (= 4 rt_input.trianglec)))) ( or (and (= 5 rt_input.triangleb) (and ( and (or (> rt_input.trianglea 5) (= 4 rt_input.trianglea)) ( and (> 9 rt_input.trianglea) (or (> rt_input.trianglea 3) (= 2 rt_input.trianglea)))) (= 4 rt_input.trianglec))) ( or (and (= 5 rt_input.triangleb) (and (and (> rt_input.trianglea 6) (> 9 rt_input.trianglea)) (> rt_input.trianglec 6))) ( or (and (> rt_input.triangleb 8) (and (not (= 3 rt_input.trianglea)) (= 5 rt_input.trianglec))) ( or (and (> rt_input.triangleb 8) (and (= 2 rt_input.trianglea) (= 2 rt_input.trianglec))) ( or (and (> rt_input.triangleb 8) (and (or (> 2 rt_input.trianglea) (= 4 rt_input.trianglea)) (> 2 rt_input.trianglec))) (and (> rt_input.triangleb 8) (and (= 4 rt_input.trianglea) (or (> rt_input.trianglec 5) (= 4 rt_input.trianglec)))) ) ) ) ) ) ) ) ) ) ) ) 
+
+[Final predicate size] 50
+
+[Total time]
+Total Conversion Time : 0 days, 0 hours, 3 minutes, 7 seconds
+
+
+14.
+[Original predicate]
+(((rt_input.trianglea > rt_input.triangleb) and (6 >= rt_input.trianglec) and (6 >= rt_input.triangleb) and (3 == rt_input.triangleb) and !(3 == rt_input.trianglec) and (6 > rt_input.trianglec)) or ((rt_input.trianglea > rt_input.triangleb) and (6 >= rt_input.trianglec) and (6 >= rt_input.triangleb) and (3 == rt_input.triangleb) and !(3 == rt_input.trianglec) and !(6 > rt_input.trianglec) and (9 == rt_input.trianglea)) or ((rt_input.trianglea > rt_input.triangleb) and (6 >= rt_input.trianglec) and (6 >= rt_input.triangleb) and !(3 == rt_input.triangleb) and (3 == rt_input.trianglec) and !(3 == rt_input.trianglea)) or ((rt_input.trianglea > rt_input.triangleb) and (6 >= rt_input.trianglec) and (6 >= rt_input.triangleb) and !(3 == rt_input.triangleb) and !(3 == rt_input.trianglec) and (6 == rt_input.trianglec) and (6 > rt_input.triangleb) and !(6 == rt_input.trianglea)) or ((rt_input.trianglea > rt_input.triangleb) and (6 >= rt_input.trianglec) and (6 >= rt_input.triangleb) and !(3 == rt_input.triangleb) and !(3 == rt_input.trianglec) and !(6 == rt_input.trianglec) and !(4 == rt_input.trianglea) and (5 > rt_input.triangleb) and (rt_input.trianglea >= 6) and (1 >= rt_input.triangleb) and !(1 >= rt_input.trianglec)) or ((rt_input.trianglea > rt_input.triangleb) and (6 >= rt_input.trianglec) and (6 >= rt_input.triangleb) and !(3 == rt_input.triangleb) and !(3 == rt_input.trianglec) and !(6 == rt_input.trianglec) and !(4 == rt_input.trianglea) and (5 > rt_input.triangleb) and (rt_input.trianglea >= 6) and !(1 >= rt_input.triangleb) and (1 >= rt_input.trianglec)) or ((rt_input.trianglea > rt_input.triangleb) and (6 >= rt_input.trianglec) and (6 >= rt_input.triangleb) and !(3 == rt_input.triangleb) and !(3 == rt_input.trianglec) and !(6 == rt_input.trianglec) and !(4 == rt_input.trianglea) and (5 > rt_input.triangleb) and !(rt_input.trianglea >= 6) and (2 == rt_input.trianglec)) or ((rt_input.trianglea > rt_input.triangleb) and (6 >= rt_input.trianglec) and (6 >= rt_input.triangleb) and !(3 == rt_input.triangleb) and !(3 == rt_input.trianglec) and !(6 == rt_input.trianglec) and !(4 == rt_input.trianglea) and (5 > rt_input.triangleb) and !(rt_input.trianglea >= 6) and !(2 == rt_input.trianglec) and (2 == rt_input.triangleb)) or ((rt_input.trianglea > rt_input.triangleb) and (6 >= rt_input.trianglec) and (6 >= rt_input.triangleb) and !(3 == rt_input.triangleb) and !(3 == rt_input.trianglec) and !(6 == rt_input.trianglec) and !(4 == rt_input.trianglea) and !(5 > rt_input.triangleb) and (5 > rt_input.trianglec)) or ((rt_input.trianglea > rt_input.triangleb) and (6 >= rt_input.trianglec) and !(6 >= rt_input.triangleb)) or ((rt_input.trianglea > rt_input.triangleb) and !(6 >= rt_input.trianglec) and (6 >= rt_input.trianglea)) or ((rt_input.trianglea > rt_input.triangleb) and !(6 >= rt_input.trianglec) and !(6 >= rt_input.trianglea) and !(5 == rt_input.triangleb) and !(9 == rt_input.trianglea)) or (!(rt_input.trianglea > rt_input.triangleb) and (5 > rt_input.trianglea) and (5 > rt_input.triangleb) and !(4 == rt_input.trianglea) and (2 >= rt_input.triangleb) and !(2 >= rt_input.trianglec) and !(1 >= rt_input.triangleb) and !(2 == rt_input.trianglea)) or (!(rt_input.trianglea > rt_input.triangleb) and (5 > rt_input.trianglea) and (5 > rt_input.triangleb) and !(4 == rt_input.trianglea) and !(2 >= rt_input.triangleb) and (rt_input.trianglea > 2) and !(3 >= rt_input.triangleb) and (1 >= rt_input.trianglec)) or (!(rt_input.trianglea > rt_input.triangleb) and (5 > rt_input.trianglea) and (5 > rt_input.triangleb) and !(4 == rt_input.trianglea) and !(2 >= rt_input.triangleb) and (rt_input.trianglea > 2) and !(3 >= rt_input.triangleb) and !(1 >= rt_input.trianglec) and !(6 > rt_input.trianglec)) or (!(rt_input.trianglea > rt_input.triangleb) and (5 > rt_input.trianglea) and (5 > rt_input.triangleb) and !(4 == rt_input.trianglea) and !(2 >= rt_input.triangleb) and !(rt_input.trianglea > 2) and (5 > rt_input.trianglec) and (1 >= rt_input.trianglec)) or (!(rt_input.trianglea > rt_input.triangleb) and (5 > rt_input.trianglea) and (5 > rt_input.triangleb) and !(4 == rt_input.trianglea) and !(2 >= rt_input.triangleb) and !(rt_input.trianglea > 2) and (5 > rt_input.trianglec) and !(1 >= rt_input.trianglec) and (3 >= rt_input.triangleb) and (3 >= rt_input.trianglec) and (2 == rt_input.trianglec) and !(2 == rt_input.trianglea)) or (!(rt_input.trianglea > rt_input.triangleb) and (5 > rt_input.trianglea) and (5 > rt_input.triangleb) and !(4 == rt_input.trianglea) and !(2 >= rt_input.triangleb) and !(rt_input.trianglea > 2) and (5 > rt_input.trianglec) and !(1 >= rt_input.trianglec) and (3 >= rt_input.triangleb) and !(3 >= rt_input.trianglec)) or (!(rt_input.trianglea > rt_input.triangleb) and (5 > rt_input.trianglea) and (5 > rt_input.triangleb) and !(4 == rt_input.trianglea) and !(2 >= rt_input.triangleb) and !(rt_input.trianglea > 2) and (5 > rt_input.trianglec) and !(1 >= rt_input.trianglec) and !(3 >= rt_input.triangleb) and (3 >= rt_input.trianglec)) or (!(rt_input.trianglea > rt_input.triangleb) and (5 > rt_input.trianglea) and (5 > rt_input.triangleb) and !(4 == rt_input.trianglea) and !(2 >= rt_input.triangleb) and !(rt_input.trianglea > 2) and !(5 > rt_input.trianglec)) or (!(rt_input.trianglea > rt_input.triangleb) and (5 > rt_input.trianglea) and !(5 > rt_input.triangleb) and (1 >= rt_input.trianglec) and (2 == rt_input.trianglea)) or (!(rt_input.trianglea > rt_input.triangleb) and (5 > rt_input.trianglea) and !(5 > rt_input.triangleb) and !(1 >= rt_input.trianglec) and (6 == rt_input.triangleb)) or (!(rt_input.trianglea > rt_input.triangleb) and (5 > rt_input.trianglea) and !(5 > rt_input.triangleb) and !(1 >= rt_input.trianglec) and !(6 == rt_input.triangleb) and (6 == rt_input.trianglec)) or (!(rt_input.trianglea > rt_input.triangleb) and (5 > rt_input.trianglea) and !(5 > rt_input.triangleb) and !(1 >= rt_input.trianglec) and !(6 == rt_input.triangleb) and !(6 == rt_input.trianglec) and (9 > rt_input.triangleb) and !(5 == rt_input.trianglec) and (2 >= rt_input.trianglea)) or (!(rt_input.trianglea > rt_input.triangleb) and (5 > rt_input.trianglea) and !(5 > rt_input.triangleb) and !(1 >= rt_input.trianglec) and !(6 == rt_input.triangleb) and !(6 == rt_input.trianglec) and (9 > rt_input.triangleb) and !(5 == rt_input.trianglec) and !(2 >= rt_input.trianglea) and !(4 == rt_input.trianglec) and (3 == rt_input.trianglec) and (4 == rt_input.trianglea)) or (!(rt_input.trianglea > rt_input.triangleb) and (5 > rt_input.trianglea) and !(5 > rt_input.triangleb) and !(1 >= rt_input.trianglec) and !(6 == rt_input.triangleb) and !(6 == rt_input.trianglec) and (9 > rt_input.triangleb) and !(5 == rt_input.trianglec) and !(2 >= rt_input.trianglea) and !(4 == rt_input.trianglec) and !(3 == rt_input.trianglec)) or (!(rt_input.trianglea > rt_input.triangleb) and (5 > rt_input.trianglea) and !(5 > rt_input.triangleb) and !(1 >= rt_input.trianglec) and !(6 == rt_input.triangleb) and !(6 == rt_input.trianglec) and !(9 > rt_input.triangleb) and (6 > rt_input.trianglec) and (1 >= rt_input.trianglea)) or (!(rt_input.trianglea > rt_input.triangleb) and (5 > rt_input.trianglea) and !(5 > rt_input.triangleb) and !(1 >= rt_input.trianglec) and !(6 == rt_input.triangleb) and !(6 == rt_input.trianglec) and !(9 > rt_input.triangleb) and (6 > rt_input.trianglec) and !(1 >= rt_input.trianglea) and (5 > rt_input.trianglec) and (3 >= rt_input.trianglea) and (3 >= rt_input.trianglec) and (2 >= rt_input.trianglec) and !(2 == rt_input.trianglea)) or (!(rt_input.trianglea > rt_input.triangleb) and (5 > rt_input.trianglea) and !(5 > rt_input.triangleb) and !(1 >= rt_input.trianglec) and !(6 == rt_input.triangleb) and !(6 == rt_input.trianglec) and !(9 > rt_input.triangleb) and (6 > rt_input.trianglec) and !(1 >= rt_input.trianglea) and (5 > rt_input.trianglec) and (3 >= rt_input.trianglea) and (3 >= rt_input.trianglec) and !(2 >= rt_input.trianglec) and (2 == rt_input.trianglea)) or (!(rt_input.trianglea > rt_input.triangleb) and (5 > rt_input.trianglea) and !(5 > rt_input.triangleb) and !(1 >= rt_input.trianglec) and !(6 == rt_input.triangleb) and !(6 == rt_input.trianglec) and !(9 > rt_input.triangleb) and (6 > rt_input.trianglec) and !(1 >= rt_input.trianglea) and (5 > rt_input.trianglec) and (3 >= rt_input.trianglea) and !(3 >= rt_input.trianglec)) or (!(rt_input.trianglea > rt_input.triangleb) and (5 > rt_input.trianglea) and !(5 > rt_input.triangleb) and !(1 >= rt_input.trianglec) and !(6 == rt_input.triangleb) and !(6 == rt_input.trianglec) and !(9 > rt_input.triangleb) and (6 > rt_input.trianglec) and !(1 >= rt_input.trianglea) and (5 > rt_input.trianglec) and !(3 >= rt_input.trianglea) and !(4 == rt_input.trianglec)) or (!(rt_input.trianglea > rt_input.triangleb) and (5 > rt_input.trianglea) and !(5 > rt_input.triangleb) and !(1 >= rt_input.trianglec) and !(6 == rt_input.triangleb) and !(6 == rt_input.trianglec) and !(9 > rt_input.triangleb) and (6 > rt_input.trianglec) and !(1 >= rt_input.trianglea) and !(5 > rt_input.trianglec)) or (!(rt_input.trianglea > rt_input.triangleb) and !(5 > rt_input.trianglea) and (3 == rt_input.trianglec) and (9 > rt_input.triangleb) and (6 == rt_input.trianglea) and !(6 >= rt_input.triangleb)) or (!(rt_input.trianglea > rt_input.triangleb) and !(5 > rt_input.trianglea) and (3 == rt_input.trianglec) and !(9 > rt_input.triangleb)) or (!(rt_input.trianglea > rt_input.triangleb) and !(5 > rt_input.trianglea) and !(3 == rt_input.trianglec) and (6 >= rt_input.trianglea) and (6 >= rt_input.triangleb) and !(rt_input.trianglea >= 6) and !(5 == rt_input.triangleb)) or (!(rt_input.trianglea > rt_input.triangleb) and !(5 > rt_input.trianglea) and !(3 == rt_input.trianglec) and (6 >= rt_input.trianglea) and !(6 >= rt_input.triangleb) and (6 == rt_input.trianglea)) or (!(rt_input.trianglea > rt_input.triangleb) and !(5 > rt_input.trianglea) and !(3 == rt_input.trianglec) and (6 >= rt_input.trianglea) and !(6 >= rt_input.triangleb) and !(6 == rt_input.trianglea) and (4 == rt_input.trianglec)))
+
+[Original predicate size] 311
+
+[Final output]
+( or (and (and (> rt_input.trianglea rt_input.triangleb) (= 3 rt_input.triangleb)) (and (not (= 3 rt_input.trianglec)) (> 6 rt_input.trianglec))) ( or (and (and (> rt_input.trianglea rt_input.triangleb) (= 3 rt_input.triangleb)) (and (= 9 rt_input.trianglea) (= 6 rt_input.trianglec))) ( or (and ( and (not (= 3 rt_input.triangleb)) (and (> 7 rt_input.triangleb) (> rt_input.trianglea rt_input.triangleb))) (and (not (= 3 rt_input.trianglea)) (= 3 rt_input.trianglec))) ( or (and ( and (and (> 7 rt_input.triangleb) (> rt_input.trianglea rt_input.triangleb)) (and (not (= 3 rt_input.triangleb)) (> 6 rt_input.triangleb))) (and (not (= 6 rt_input.trianglea)) (= 6 rt_input.trianglec))) ( or (and (and (> 2 rt_input.triangleb) (> rt_input.trianglea rt_input.triangleb)) (and (> rt_input.trianglea 5) ( and (and (not (= 3 rt_input.trianglec)) (> 7 rt_input.trianglec)) ( and (not (= 6 rt_input.trianglec)) (> rt_input.trianglec 1))))) ( or (and ( and (or (> 3 rt_input.triangleb) (= 4 rt_input.triangleb)) ( and (> rt_input.triangleb 1) (and (> 7 rt_input.triangleb) (> rt_input.trianglea rt_input.triangleb)))) (and (> rt_input.trianglea 5) (> 2 rt_input.trianglec))) ( or (and ( and (and (> 7 rt_input.triangleb) (> rt_input.trianglea rt_input.triangleb)) (or (> 3 rt_input.triangleb) (= 4 rt_input.triangleb))) (and (or (> 4 rt_input.trianglea) (= 5 rt_input.trianglea)) (= 2 rt_input.trianglec))) ( or (and (and (> rt_input.trianglea rt_input.triangleb) (= 2 rt_input.triangleb)) (and (or (> 4 rt_input.trianglea) (= 5 rt_input.trianglea)) ( and (and (not (= 3 rt_input.trianglec)) (> 7 rt_input.trianglec)) (not (or (= 6 rt_input.trianglec) (= 2 rt_input.trianglec)))))) ( or (and ( and (and (> 7 rt_input.triangleb) (> rt_input.trianglea rt_input.triangleb)) (> rt_input.triangleb 4)) (and (not (= 4 rt_input.trianglea)) (or (> 3 rt_input.trianglec) (= 4 rt_input.trianglec)))) ( or (and (and (> rt_input.triangleb 6) (> rt_input.trianglea rt_input.triangleb)) (> 7 rt_input.trianglec)) ( or (and (> rt_input.trianglea rt_input.triangleb) (and (> 7 rt_input.trianglea) (> rt_input.trianglec 6))) ( or (and ( and (> rt_input.trianglea rt_input.triangleb) (not (= 5 rt_input.triangleb))) (and ( and (> rt_input.trianglea 6) (not (= 9 rt_input.trianglea))) (> rt_input.trianglec 6))) ( or (and (and (> 3 rt_input.trianglea) (= 2 rt_input.triangleb)) (and (or (> 2 rt_input.trianglea) (= 3 rt_input.trianglea)) (> rt_input.trianglec 2))) ( or (and (and (> 5 rt_input.trianglea) (= 4 rt_input.triangleb)) (and (= 3 rt_input.trianglea) (> 2 rt_input.trianglec))) ( or (and (and (> 5 rt_input.trianglea) (= 4 rt_input.triangleb)) (and (= 3 rt_input.trianglea) (> rt_input.trianglec 5))) ( or (and ( and (> rt_input.triangleb 2) (and (>= rt_input.triangleb rt_input.trianglea) (> 5 rt_input.triangleb))) (and (> 3 rt_input.trianglea) (> 2 rt_input.trianglec))) ( or (and (and (> 4 rt_input.trianglea) (= 3 rt_input.triangleb)) (and (> 2 rt_input.trianglea) (= 2 rt_input.trianglec))) ( or (and (and (> 4 rt_input.trianglea) (= 3 rt_input.triangleb)) (and (> 3 rt_input.trianglea) (= 4 rt_input.trianglec))) ( or (and (and (> 5 rt_input.trianglea) (= 4 rt_input.triangleb)) (and (> 3 rt_input.trianglea) (and (> rt_input.trianglec 1) (> 4 rt_input.trianglec)))) ( or (and ( and (> rt_input.triangleb 2) (and (>= rt_input.triangleb rt_input.trianglea) (> 5 rt_input.triangleb))) (and (> 3 rt_input.trianglea) (> rt_input.trianglec 4))) ( or (and (and (>= rt_input.triangleb rt_input.trianglea) (> rt_input.triangleb 4)) (and (= 2 rt_input.trianglea) (> 2 rt_input.trianglec))) ( or (and (and (> 7 rt_input.trianglea) (= 6 rt_input.triangleb)) (and (> 5 rt_input.trianglea) (> rt_input.trianglec 1))) ( or (and ( and (not (= 6 rt_input.triangleb)) (and (>= rt_input.triangleb rt_input.trianglea) (> rt_input.triangleb 4))) (and (> 5 rt_input.trianglea) (= 6 rt_input.trianglec))) ( or (and ( and (and (>= rt_input.triangleb rt_input.trianglea) (> rt_input.triangleb 4)) (and (not (= 6 rt_input.triangleb)) (> 9 rt_input.triangleb))) (and (> 3 rt_input.trianglea) ( and (not (= 5 rt_input.trianglec)) ( and (> rt_input.trianglec 1) (not (= 6 rt_input.trianglec)))))) ( or (and ( and (and (>= rt_input.triangleb rt_input.trianglea) (> rt_input.triangleb 4)) (and (not (= 6 rt_input.triangleb)) (> 9 rt_input.triangleb))) (and (= 4 rt_input.trianglea) (= 3 rt_input.trianglec))) ( or (and ( and (and (>= rt_input.triangleb rt_input.trianglea) (> rt_input.triangleb 4)) (and (not (= 6 rt_input.triangleb)) (> 9 rt_input.triangleb))) (and (and (> rt_input.trianglea 2) (> 5 rt_input.trianglea)) (or (> rt_input.trianglec 6) (= 2 rt_input.trianglec)))) ( or (and (and (>= rt_input.triangleb rt_input.trianglea) (> rt_input.triangleb 8)) (and (> 2 rt_input.trianglea) (and (> rt_input.trianglec 1) (> 6 rt_input.trianglec)))) ( or (and (and (>= rt_input.triangleb rt_input.trianglea) (> rt_input.triangleb 8)) (and (= 3 rt_input.trianglea) (= 2 rt_input.trianglec))) ( or (and (and (>= rt_input.triangleb rt_input.trianglea) (> rt_input.triangleb 8)) (and (= 2 rt_input.trianglea) (= 3 rt_input.trianglec))) ( or (and (and (>= rt_input.triangleb rt_input.trianglea) (> rt_input.triangleb 8)) (and (and (> rt_input.trianglea 1) (> 4 rt_input.trianglea)) (= 4 rt_input.trianglec))) ( or (and (and (>= rt_input.triangleb rt_input.trianglea) (> rt_input.triangleb 8)) (and (= 4 rt_input.trianglea) (and (> rt_input.trianglec 1) (> 4 rt_input.trianglec)))) ( or (and (and (>= rt_input.triangleb rt_input.trianglea) (> rt_input.triangleb 8)) (and (and (> rt_input.trianglea 1) (> 5 rt_input.trianglea)) (= 5 rt_input.trianglec))) ( or (and ( and (> rt_input.triangleb 6) (and (>= rt_input.triangleb rt_input.trianglea) (> 9 rt_input.triangleb))) (and (= 6 rt_input.trianglea) (= 3 rt_input.trianglec))) ( or (and (and (>= rt_input.triangleb rt_input.trianglea) (> rt_input.triangleb 8)) (and (> rt_input.trianglea 4) (= 3 rt_input.trianglec))) ( or (and ( and (not (= 5 rt_input.triangleb)) (and (>= rt_input.triangleb rt_input.trianglea) (> 7 rt_input.triangleb))) (and (= 5 rt_input.trianglea) (not (= 3 rt_input.trianglec)))) ( or (and (and (>= rt_input.triangleb rt_input.trianglea) (> rt_input.triangleb 6)) (and (= 6 rt_input.trianglea) (not (= 3 rt_input.trianglec)))) (and (and (>= rt_input.triangleb rt_input.trianglea) (> rt_input.triangleb 6)) (and (= 5 rt_input.trianglea) (= 4 rt_input.trianglec))) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) 
+
+[Final predicate size] 186
+
+[Total time]
+Total Conversion Time : 0 days, 0 hours, 13 minutes, 7 seconds
+
+
+15.
+[Original predicate]
+((!(rt_input.trianglea > rt_input.triangleb) and (6 > rt_input.trianglea) and (6 > rt_input.triangleb) and (2 >= rt_input.triangleb) and (3 >= rt_input.trianglec) and (1 >= rt_input.trianglea) and !(1 >= rt_input.trianglec) and !(2 == rt_input.triangleb)) or (!(rt_input.trianglea > rt_input.triangleb) and (6 > rt_input.trianglea) and (6 > rt_input.triangleb) and (2 >= rt_input.triangleb) and (3 >= rt_input.trianglec) and !(1 >= rt_input.trianglea) and !(2 == rt_input.trianglec)) or (!(rt_input.trianglea > rt_input.triangleb) and (6 > rt_input.trianglea) and (6 > rt_input.triangleb) and (2 >= rt_input.triangleb) and !(3 >= rt_input.trianglec) and (1 >= rt_input.triangleb)) or (!(rt_input.trianglea > rt_input.triangleb) and (6 > rt_input.trianglea) and (6 > rt_input.triangleb) and (2 >= rt_input.triangleb) and !(3 >= rt_input.trianglec) and !(1 >= rt_input.triangleb) and (2 == rt_input.trianglea)) or (!(rt_input.trianglea > rt_input.triangleb) and (6 > rt_input.trianglea) and (6 > rt_input.triangleb) and !(2 >= rt_input.triangleb) and (rt_input.trianglea > 2) and (3 == rt_input.triangleb) and !(3 == rt_input.trianglec)) or (!(rt_input.trianglea > rt_input.triangleb) and (6 > rt_input.trianglea) and (6 > rt_input.triangleb) and !(2 >= rt_input.triangleb) and (rt_input.trianglea > 2) and !(3 == rt_input.triangleb) and (rt_input.trianglea > 3) and (4 == rt_input.triangleb) and !(4 == rt_input.trianglec)) or (!(rt_input.trianglea > rt_input.triangleb) and (6 > rt_input.trianglea) and (6 > rt_input.triangleb) and !(2 >= rt_input.triangleb) and (rt_input.trianglea > 2) and !(3 == rt_input.triangleb) and (rt_input.trianglea > 3) and !(4 == rt_input.triangleb) and !(4 == rt_input.trianglea) and !(5 == rt_input.trianglec)) or (!(rt_input.trianglea > rt_input.triangleb) and !(6 > rt_input.trianglea) and (2 >= rt_input.trianglec)) or (!(rt_input.trianglea > rt_input.triangleb) and !(6 > rt_input.trianglea) and !(2 >= rt_input.trianglec) and (6 >= rt_input.triangleb) and !(6 == rt_input.trianglec)) or (!(rt_input.trianglea > rt_input.triangleb) and !(6 > rt_input.trianglea) and !(2 >= rt_input.trianglec) and !(6 >= rt_input.triangleb) and (6 == rt_input.trianglec)) or (!(rt_input.trianglea > rt_input.triangleb) and !(6 > rt_input.trianglea) and !(2 >= rt_input.trianglec) and !(6 >= rt_input.triangleb) and !(6 == rt_input.trianglec) and (5 > rt_input.trianglec) and !(6 == rt_input.trianglea) and !(9 == rt_input.triangleb)))
+
+[Original predicate size] 75
+
+[Final output]
+( or (and (and (>= rt_input.triangleb rt_input.trianglea) (> 2 rt_input.triangleb)) (and (> 2 rt_input.trianglea) (and (> rt_input.trianglec 1) (> 4 rt_input.trianglec)))) ( or (and (and (>= rt_input.triangleb rt_input.trianglea) (> 3 rt_input.triangleb)) (and (and (> rt_input.trianglea 1) (> 6 rt_input.trianglea)) (or (> 2 rt_input.trianglec) (= 3 rt_input.trianglec)))) ( or (and (and (>= rt_input.triangleb rt_input.trianglea) (> 2 rt_input.triangleb)) (and (> 6 rt_input.trianglea) (> rt_input.trianglec 3))) ( or (and (and (> 3 rt_input.trianglea) (= 2 rt_input.triangleb)) (and (= 2 rt_input.trianglea) (> rt_input.trianglec 3))) ( or (and (and (> 4 rt_input.trianglea) (= 3 rt_input.triangleb)) (and (and (> rt_input.trianglea 2) (> 6 rt_input.trianglea)) (not (= 3 rt_input.trianglec)))) ( or (and (and (> 5 rt_input.trianglea) (= 4 rt_input.triangleb)) (and (and (> rt_input.trianglea 3) (> 6 rt_input.trianglea)) (not (= 4 rt_input.trianglec)))) ( or (and (and (> 6 rt_input.trianglea) (= 5 rt_input.triangleb)) (and (= 5 rt_input.trianglea) (not (= 5 rt_input.trianglec)))) ( or (and (>= rt_input.triangleb rt_input.trianglea) (and (> rt_input.trianglea 5) (> 3 rt_input.trianglec))) ( or (and (and (>= rt_input.triangleb rt_input.trianglea) (> 7 rt_input.triangleb)) (and (> rt_input.trianglea 5) ( and (> rt_input.trianglec 2) (not (= 6 rt_input.trianglec))))) ( or (and (and (>= rt_input.triangleb rt_input.trianglea) (> rt_input.triangleb 6)) (and (> rt_input.trianglea 5) (= 6 rt_input.trianglec))) (and ( and (not (= 9 rt_input.triangleb)) (and (>= rt_input.triangleb rt_input.trianglea) (> rt_input.triangleb 6))) (and (> rt_input.trianglea 6) (and (> rt_input.trianglec 2) (> 5 rt_input.trianglec)))) ) ) ) ) ) ) ) ) ) ) 
+
+[Final predicate size] 51
+
+[Total time]
+Total Conversion Time : 0 days, 0 hours, 2 minutes, 33 seconds
+
+
+16.
+[Original predicate]
+(((5 > rt_input.triangleb) and (5 > rt_input.trianglec) and (5 > rt_input.trianglea) and (2 >= rt_input.trianglea) and (3 >= rt_input.triangleb) and (3 >= rt_input.trianglec) and (3 == rt_input.triangleb) and !(2 >= rt_input.trianglec)) or ((5 > rt_input.triangleb) and (5 > rt_input.trianglec) and (5 > rt_input.trianglea) and (2 >= rt_input.trianglea) and (3 >= rt_input.triangleb) and (3 >= rt_input.trianglec) and !(3 == rt_input.triangleb) and (2 >= rt_input.trianglec) and (1 >= rt_input.triangleb) and (2 == rt_input.trianglea)) or ((5 > rt_input.triangleb) and (5 > rt_input.trianglec) and (5 > rt_input.trianglea) and (2 >= rt_input.trianglea) and (3 >= rt_input.triangleb) and (3 >= rt_input.trianglec) and !(3 == rt_input.triangleb) and (2 >= rt_input.trianglec) and !(1 >= rt_input.triangleb) and !(1 >= rt_input.trianglec) and !(2 == rt_input.trianglea)) or ((5 > rt_input.triangleb) and (5 > rt_input.trianglec) and (5 > rt_input.trianglea) and (2 >= rt_input.trianglea) and !(3 >= rt_input.triangleb) and !(3 >= rt_input.trianglec)) or ((5 > rt_input.triangleb) and (5 > rt_input.trianglec) and (5 > rt_input.trianglea) and !(2 >= rt_input.trianglea) and !(3 == rt_input.triangleb) and (2 >= rt_input.trianglec) and (2 >= rt_input.triangleb) and (1 >= rt_input.triangleb) and (1 >= rt_input.trianglec)) or ((5 > rt_input.triangleb) and (5 > rt_input.trianglec) and (5 > rt_input.trianglea) and !(2 >= rt_input.trianglea) and !(3 == rt_input.triangleb) and (2 >= rt_input.trianglec) and (2 >= rt_input.triangleb) and !(1 >= rt_input.triangleb)) or ((5 > rt_input.triangleb) and (5 > rt_input.trianglec) and (5 > rt_input.trianglea) and !(2 >= rt_input.trianglea) and !(3 == rt_input.triangleb) and !(2 >= rt_input.trianglec) and !(3 >= rt_input.triangleb) and !(3 >= rt_input.trianglec) and (3 >= rt_input.trianglea)) or ((5 > rt_input.triangleb) and (5 > rt_input.trianglec) and !(5 > rt_input.trianglea) and (2 == rt_input.triangleb) and (2 == rt_input.trianglec)) or ((5 > rt_input.triangleb) and (5 > rt_input.trianglec) and !(5 > rt_input.trianglea) and !(2 == rt_input.triangleb) and !(2 == rt_input.trianglec) and (6 > rt_input.trianglea) and !(2 >= rt_input.trianglec)) or ((5 > rt_input.triangleb) and (5 > rt_input.trianglec) and !(5 > rt_input.trianglea) and !(2 == rt_input.triangleb) and !(2 == rt_input.trianglec) and !(6 > rt_input.trianglea) and (9 == rt_input.trianglea) and !(2 >= rt_input.trianglec) and (3 == rt_input.triangleb) and (3 >= rt_input.trianglec)) or ((5 > rt_input.triangleb) and (5 > rt_input.trianglec) and !(5 > rt_input.trianglea) and !(2 == rt_input.triangleb) and !(2 == rt_input.trianglec) and !(6 > rt_input.trianglea) and !(9 == rt_input.trianglea) and (6 == rt_input.trianglea) and !(3 >= rt_input.trianglec)) or ((5 > rt_input.triangleb) and (5 > rt_input.trianglec) and !(5 > rt_input.trianglea) and !(2 == rt_input.triangleb) and !(2 == rt_input.trianglec) and !(6 > rt_input.trianglea) and !(9 == rt_input.trianglea) and !(6 == rt_input.trianglea) and (2 >= rt_input.trianglec)) or ((5 > rt_input.triangleb) and (5 > rt_input.trianglec) and !(5 > rt_input.trianglea) and !(2 == rt_input.triangleb) and !(2 == rt_input.trianglec) and !(6 > rt_input.trianglea) and !(9 == rt_input.trianglea) and !(6 == rt_input.trianglea) and !(2 >= rt_input.trianglec) and (3 >= rt_input.triangleb) and (3 >= rt_input.trianglec)) or (!(5 > rt_input.triangleb) and !(5 > rt_input.trianglec) and !(6 == rt_input.trianglea) and (9 == rt_input.trianglec) and !(9 > rt_input.triangleb) and !(9 == rt_input.trianglea)) or (!(5 > rt_input.triangleb) and !(5 > rt_input.trianglec) and !(6 == rt_input.trianglea) and !(9 == rt_input.trianglec) and (9 > rt_input.triangleb) and (9 > rt_input.trianglea) and (5 == rt_input.trianglea) and !(6 >= rt_input.triangleb)) or (!(5 > rt_input.triangleb) and !(5 > rt_input.trianglec) and !(6 == rt_input.trianglea) and !(9 == rt_input.trianglec) and (9 > rt_input.triangleb) and (9 > rt_input.trianglea) and !(5 == rt_input.trianglea) and (6 >= rt_input.trianglec) and (6 >= rt_input.triangleb) and !(2 == rt_input.trianglea) and (6 > rt_input.triangleb) and (5 == rt_input.trianglec)) or (!(5 > rt_input.triangleb) and !(5 > rt_input.trianglec) and !(6 == rt_input.trianglea) and !(9 == rt_input.trianglec) and (9 > rt_input.triangleb) and (9 > rt_input.trianglea) and !(5 == rt_input.trianglea) and (6 >= rt_input.trianglec) and (6 >= rt_input.triangleb) and !(2 == rt_input.trianglea) and !(6 > rt_input.triangleb)) or (!(5 > rt_input.triangleb) and !(5 > rt_input.trianglec) and !(6 == rt_input.trianglea) and !(9 == rt_input.trianglec) and (9 > rt_input.triangleb) and !(9 > rt_input.trianglea)))
+
+[Original predicate size] 155
+
+[Final output]
+( or (and (= 3 rt_input.triangleb) (and (> 3 rt_input.trianglea) (= 3 rt_input.trianglec))) ( or (and (> 2 rt_input.triangleb) (and (= 2 rt_input.trianglea) (> 3 rt_input.trianglec))) ( or (and (= 2 rt_input.triangleb) (and (> 2 rt_input.trianglea) (= 2 rt_input.trianglec))) ( or (and (= 4 rt_input.triangleb) (and (> 3 rt_input.trianglea) (= 4 rt_input.trianglec))) ( or (and (> 2 rt_input.triangleb) (and (and (> rt_input.trianglea 2) (> 5 rt_input.trianglea)) (> 2 rt_input.trianglec))) ( or (and (= 2 rt_input.triangleb) (and (and (> rt_input.trianglea 2) (> 5 rt_input.trianglea)) (> 3 rt_input.trianglec))) ( or (and (= 4 rt_input.triangleb) (and (= 3 rt_input.trianglea) (= 4 rt_input.trianglec))) ( or (and (= 2 rt_input.triangleb) (and (> rt_input.trianglea 4) (= 2 rt_input.trianglec))) ( or (and (and (not (= 2 rt_input.triangleb)) (> 5 rt_input.triangleb)) (and (= 5 rt_input.trianglea) (and (> rt_input.trianglec 2) (> 5 rt_input.trianglec)))) ( or (and (= 3 rt_input.triangleb) (and (= 9 rt_input.trianglea) (= 3 rt_input.trianglec))) ( or (and (and (not (= 2 rt_input.triangleb)) (> 5 rt_input.triangleb)) (and (= 6 rt_input.trianglea) (= 4 rt_input.trianglec))) ( or (and (and (not (= 2 rt_input.triangleb)) (> 5 rt_input.triangleb)) (and (and (not (= 9 rt_input.trianglea)) (> rt_input.trianglea 6)) (> 2 rt_input.trianglec))) ( or (and (or (> 2 rt_input.triangleb) (= 3 rt_input.triangleb)) (and (and (not (= 9 rt_input.trianglea)) (> rt_input.trianglea 6)) (= 3 rt_input.trianglec))) ( or (and (> rt_input.triangleb 8) (and ( and (not (= 6 rt_input.trianglea)) (not (= 9 rt_input.trianglea))) (= 9 rt_input.trianglec))) ( or (and (and (> rt_input.triangleb 6) (> 9 rt_input.triangleb)) (and (= 5 rt_input.trianglea) ( and (> rt_input.trianglec 4) (not (= 9 rt_input.trianglec))))) ( or (and (= 5 rt_input.triangleb) (and ( and (and (not (= 6 rt_input.trianglea)) (> 9 rt_input.trianglea)) ( and (not (= 5 rt_input.trianglea)) (not (= 2 rt_input.trianglea)))) (= 5 rt_input.trianglec))) ( or (and (= 6 rt_input.triangleb) (and ( and (and (not (= 6 rt_input.trianglea)) (> 9 rt_input.trianglea)) ( and (not (= 5 rt_input.trianglea)) (not (= 2 rt_input.trianglea)))) (and (> rt_input.trianglec 4) (> 7 rt_input.trianglec)))) (and (and (> rt_input.triangleb 4) (> 9 rt_input.triangleb)) (and (> rt_input.trianglea 8) ( and (> rt_input.trianglec 4) (not (= 9 rt_input.trianglec))))) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) 
+
+[Final predicate size] 75
+
+[Total time]
+Total Conversion Time : 0 days, 0 hours, 4 minutes, 51 seconds
+
+
+17.
+[Original predicate]
+((rt_input.triangleb >= rt_input.trianglec) and !(rt_input.triangleb > rt_input.trianglec) and !(rt_input.trianglea == rt_input.triangleb))
+
+[Original predicate size] 3
+
+[Final output]
+( and (not (= rt_input.trianglea rt_input.triangleb)) (= rt_input.trianglec rt_input.triangleb)) 
+
+[Final predicate size] 2
+
+[Total time]
+Total Conversion Time : 0 days, 0 hours, 0 minutes, 21 seconds
+
+
+18.
+[Original predicate]
+((rt_input.trianglea >= rt_input.trianglec) and !(rt_input.trianglea > rt_input.trianglec) and !(rt_input.trianglea == rt_input.triangleb))
+
+[Original predicate size] 3
+
+[Final output]
+(and (not (= rt_input.trianglea rt_input.triangleb)) (= rt_input.trianglec rt_input.trianglea)) 
+
+[Final predicate size] 2
+
+[Total time]
+Total Conversion Time : 0 days, 0 hours, 0 minutes, 1 seconds
+
+
+19.
+[Original predicate]
+(((rt_input.trianglea == rt_input.triangleb) and (rt_input.trianglea >= rt_input.trianglec) and (rt_input.trianglea > rt_input.trianglec)) or ((rt_input.trianglea == rt_input.triangleb) and !(rt_input.trianglea >= rt_input.trianglec)))
+
+[Original predicate size] 5
+
+[Final output]
+( or (and (= rt_input.trianglea rt_input.triangleb) (> rt_input.trianglea rt_input.trianglec)) (and (= rt_input.trianglea rt_input.triangleb) (> rt_input.trianglec rt_input.trianglea)) ) 
+
+[Final predicate size] 4
+
+[Total time]
+Total Conversion Time : 0 days, 0 hours, 0 minutes, 2 seconds
+
+
+20.
+[Original predicate]
+((rt_input.trianglea == rt_input.triangleb) and (rt_input.trianglea >= rt_input.trianglec) and !(rt_input.trianglea > rt_input.trianglec))
+
+[Original predicate size] 3
+
+[Final output]
+(and (= rt_input.trianglea rt_input.triangleb) (= rt_input.trianglec rt_input.trianglea)) 
+
+[Final predicate size] 2
+
+[Total time]
+Total Conversion Time : 0 days, 0 hours, 0 minutes, 1 seconds
+
+
