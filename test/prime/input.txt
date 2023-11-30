@@ -1,2 +1,0 @@
-(((7 >= rt_input.n) and (rt_input.n > 1) and !(4 == rt_input.n) and (rt_input.n >= 6) and !(7 > rt_input.n)) or ((7 >= rt_input.n) and (rt_input.n > 1) and !(4 == rt_input.n) and !(rt_input.n >= 6)))
-(((rt_input.n <= 7) and (1 >= rt_input.n)) or ((rt_input.n <= 7) and !(1 >= rt_input.n) and (6 == rt_input.n)) or ((rt_input.n <= 7) and !(1 >= rt_input.n) and !(6 == rt_input.n) and !(rt_input.n >= 5) and (rt_input.n > 3)) or !(rt_input.n <= 7))
