@@ -3,10 +3,12 @@ Active Learning을 통해 생성된 모델의 복잡한 프레디킷을 단순�
 
 EUsolver를 이용한 프로그램 합성을 통해 프레디킷을 단순화
 
+  
 ## Predicate Simplification 코드의 구성
 1. **Predicate Collector** : final model 튜플 리스트로부터 프레디킷을 수집하는 코드
 2. **Spec Generator** : Predicate Collector로부터 수집된 프레디킷 중, OnlyPred.txt로부터 단순화된 프레디킷을 생성하는 코드
 
+  
 ## 1. Preicate Collector
 * input
   * input.txt가 저장되어 있는 filepath를 변경해줘야 한다. (global static 변수)
@@ -21,7 +23,7 @@ EUsolver를 이용한 프로그램 합성을 통해 프레디킷을 단순화
   * pred_event_state.txt : 프레디킷과 event label, incoming state, outgoing state를 수집한 텍스트 파일
   * **onlyPred.txt** (Spec Generator의 input) : 순수한 프레디킷만 수집한 텍스트 파일
 
-
+  
 ## 2. Spec Generator
 * input
   * onlyPred.txt가 저장되어 있는 filepath를 변경해줘야 함. (main local 변수)
